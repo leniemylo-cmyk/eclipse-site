@@ -1,0 +1,127 @@
+{
+ "checked": "2026-08-25",
+ "items": [
+  {
+   "url": "https://www.amf-france.org/fr/espace-epargnants",
+   "lang": "FR",
+   "tags": [
+    "free"
+   ],
+   "name": {
+    "fr": "AMF — Espace épargnants",
+    "en": "AMF — Savers’ hub (French financial regulator)",
+    "es": "AMF — Espacio del ahorrador (regulador financiero francés)"
+   },
+   "text": {
+    "fr": "Le régulateur lui-même : guides courts, simulateur d’impact des frais, quiz, lexique et alertes contre les arnaques. Aucun intérêt à vous vendre un produit.",
+    "en": "The regulator itself: short guides, a fee-impact simulator, quizzes, a glossary and scam alerts. No interest in selling you a product.",
+    "es": "El propio regulador: guías breves, simulador del impacto de las comisiones, cuestionarios, glosario y alertas contra estafas. Ningún interés en venderte un producto."
+   }
+  },
+  {
+   "url": "https://www.lafinancepourtous.com/decryptages/marches-financiers/",
+   "lang": "FR",
+   "tags": [
+    "free"
+   ],
+   "name": {
+    "fr": "La finance pour tous",
+    "en": "La finance pour tous (public-interest association)",
+    "es": "La finance pour tous (asociación de interés general)"
+   },
+   "text": {
+    "fr": "Association d’intérêt général agréée par l’Éducation nationale : dossiers sur les marchés, plus de 25 quiz, dictionnaire d’environ 800 définitions. Sans inscription, sans publicité.",
+    "en": "A public-interest association approved by the French Ministry of Education: dossiers on markets, 25+ quizzes, a dictionary of about 800 definitions. No sign-up, no ads.",
+    "es": "Asociación de interés general con el visto bueno del Ministerio de Educación francés: dosieres sobre mercados, más de 25 cuestionarios y un diccionario de unas 800 definiciones. Sin registro y sin publicidad."
+   }
+  },
+  {
+   "url": "https://www.banque-france.fr/fr/abc-de-leconomie",
+   "lang": "FR",
+   "tags": [
+    "free"
+   ],
+   "name": {
+    "fr": "Banque de France — ABC de l’économie",
+    "en": "Banque de France — ABC of the economy",
+    "es": "Banco de Francia — ABC de la economía"
+   },
+   "text": {
+    "fr": "Fiches de 2 à 4 pages, vidéos et podcast pour comprendre l’inflation, les taux et la monnaie. L’une des ressources les plus sous-estimées.",
+    "en": "Fact sheets of 2 to 4 pages, videos and a podcast to understand inflation, interest rates and money. One of the most underrated resources.",
+    "es": "Fichas de 2 a 4 páginas, vídeos y un pódcast para entender la inflación, los tipos de interés y la moneda. Uno de los recursos más infravalorados."
+   }
+  },
+  {
+   "url": "https://www.fun-mooc.fr/fr/cours/comment-gerer-efficacement-son-epargne-et-ses-placements/",
+   "lang": "FR",
+   "tags": [
+    "free",
+    "badge"
+   ],
+   "name": {
+    "fr": "MOOC « Comment gérer efficacement son épargne et ses placements ? »",
+    "en": "MOOC “How to manage your savings and investments effectively” (in French)",
+    "es": "MOOC «Cómo gestionar eficazmente tu ahorro y tus inversiones» (en francés)"
+   },
+   "text": {
+    "fr": "Conçu par l’Institut national de la consommation avec l’AMF : profil d’investisseur, produits financiers, mise en pratique. Environ 3 semaines à raison d’1 h 15 par semaine. Badge numérique gratuit dès 50 % de bonnes réponses. Le cours s’ouvre par sessions : vérifiez la date.",
+    "en": "Designed by the French National Consumer Institute with the AMF: investor profile, financial products, practice. About 3 weeks at 1 h 15 a week. Free digital badge from 50% correct answers. The course opens in sessions: check the date.",
+    "es": "Diseñado por el Instituto Nacional del Consumo francés con la AMF: perfil de inversor, productos financieros, práctica. Unas 3 semanas a razón de 1 h 15 por semana. Insignia digital gratuita a partir del 50 % de respuestas correctas. El curso se abre por sesiones: comprueba la fecha."
+   }
+  },
+  {
+   "url": "https://www.coursera.org/learn/financial-markets-global",
+   "lang": "EN",
+   "tags": [
+    "audit",
+    "paid"
+   ],
+   "name": {
+    "fr": "Yale — Financial Markets (Robert Shiller)",
+    "en": "Yale — Financial Markets (Robert Shiller)",
+    "es": "Yale — Financial Markets (Robert Shiller)"
+   },
+   "text": {
+    "fr": "La référence pour comprendre les marchés, par un prix Nobel d’économie. Aucun prérequis, sous-titres en 22 langues dont le français. Suivi gratuit (« audit ») ; le certificat est payant (environ 49 $). Environ 33 heures.",
+    "en": "The reference for understanding markets, taught by a Nobel laureate in economics. No prerequisites, subtitles in 22 languages. Free to follow (“audit”); the certificate is paid (about $49). Roughly 33 hours.",
+    "es": "La referencia para entender los mercados, impartida por un premio Nobel de Economía. Sin requisitos previos, subtítulos en 22 idiomas. Se puede seguir gratis («audit»); el certificado es de pago (unos 49 $). Unas 33 horas."
+   }
+  },
+  {
+   "url": "https://www.futurelearn.com/courses/epargner-et-investir",
+   "lang": "FR",
+   "tags": [
+    "free",
+    "paid"
+   ],
+   "name": {
+    "fr": "Grenoble École de Management — Épargner et investir",
+    "en": "Grenoble École de Management — Saving and investing (in French)",
+    "es": "Grenoble École de Management — Ahorrar e invertir (en francés)"
+   },
+   "text": {
+    "fr": "Le MOOC francophone le plus complet sur le sujet, sans compétence préalable : circuit de l’épargne, intermédiaires, marchés, réglementation. Environ 5 semaines à 3 h par semaine. Accès gratuit ; certificat payant.",
+    "en": "The most complete French-language MOOC on the subject, no prior skills needed: the savings circuit, intermediaries, markets, regulation. About 5 weeks at 3 h a week. Free access; paid certificate.",
+    "es": "El MOOC en francés más completo sobre el tema, sin conocimientos previos: circuito del ahorro, intermediarios, mercados, regulación. Unas 5 semanas a razón de 3 h por semana. Acceso gratuito; certificado de pago."
+   }
+  },
+  {
+   "url": "https://fr.khanacademy.org/economics-finance-domain/core-finance",
+   "lang": "FR",
+   "tags": [
+    "free"
+   ],
+   "name": {
+    "fr": "Khan Academy — Finances et marchés de capitaux",
+    "en": "Khan Academy — Finance and capital markets (in French)",
+    "es": "Khan Academy — Finanzas y mercados de capitales (en francés)"
+   },
+   "text": {
+    "fr": "Modules de 5 à 15 minutes pour combler un trou précis : intérêts composés, obligations, ratios. Gratuit, sans publicité.",
+    "en": "Modules of 5 to 15 minutes to fill one precise gap: compound interest, bonds, ratios. Free, no ads.",
+    "es": "Módulos de 5 a 15 minutos para cubrir una laguna concreta: interés compuesto, bonos, ratios. Gratis y sin publicidad."
+   }
+  }
+ ]
+}

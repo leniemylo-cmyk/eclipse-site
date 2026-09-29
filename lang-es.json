@@ -1,0 +1,130 @@
+{
+ "ar.empty": "Todavía no hay ninguna edición archivada.",
+ "ar.no": "N.º ",
+ "chat.back": "Volver",
+ "chat.bad.email": "Esa dirección no parece válida. ¿Puedes revisarla?",
+ "chat.bad.msg": "¿Puedes precisar un poco más tu mensaje?",
+ "chat.btn": "Chatear",
+ "chat.c.question": "Tengo una pregunta",
+ "chat.c.subscribe": "Quiero suscribirme",
+ "chat.c.topic": "Quiero proponer un tema",
+ "chat.close": "Cerrar",
+ "chat.hello": "¡Hola! Somos el equipo de Éclipse. ¿En qué podemos ayudarte?",
+ "chat.ko": "El mensaje no se ha enviado. Vuelve a intentarlo dentro de un momento.",
+ "chat.mail.ask": "¿Quieres una respuesta o que te avisemos? Deja tu correo (opcional). Solo sirve para responderte y nunca se comparte. No nos envíes números de cuenta ni datos bancarios.",
+ "chat.mail.skip": "Sin correo",
+ "chat.ph.email": "tu@correo.com",
+ "chat.ph.msg": "Tu mensaje…",
+ "chat.q.ask": "¿Cuál es tu pregunta?",
+ "chat.q.warn": "Un recordatorio: explicamos la actualidad, pero no damos ningún consejo personalizado de inversión ni de fiscalidad.",
+ "chat.send": "Enviar",
+ "chat.sub.ask": "Con mucho gusto. ¿Cuál es tu correo electrónico?",
+ "chat.sub.link": "Con mucho gusto: la suscripción se hace en nuestra página de inscripción.",
+ "chat.sub.open": "Abrir la página de inscripción",
+ "chat.thanks": "¡Gracias, recibido! Lo leemos todo. ¿Algo más?",
+ "chat.title": "Escríbenos",
+ "chat.topic.ask": "¿Qué tema te gustaría que explicáramos? Una palabra, una noticia, una duda que te ronda.",
+ "chat.wait": "Un momento, el mensaje anterior aún se está enviando.",
+ "ed.arch": "Estás leyendo la edición archivada del",
+ "ed.back": "Ir a la edición del día →",
+ "ed.changes": "Lo que cambia para ti",
+ "ed.kicker": "{date} · Edición del día · n.º {n}",
+ "ed.ko": "No se encuentra esta edición por ahora.",
+ "ed.loading": "Cargando la edición…",
+ "ed.means": "Lo que significa",
+ "ed.noLang": "Esta edición aún no está disponible en tu idioma: se muestra en francés.",
+ "ed.said": "Lo que se dice",
+ "ed.sources": "Fuentes del día",
+ "ed.three": "Tres cosas que entender hoy",
+ "ed.watch": "A vigilar esta semana",
+ "ed.word": "La palabra del día",
+ "foot.rights": "© 2026 Éclipse",
+ "foot.sig": "Éclipse se escribe cada mañana para quienes nunca han tenido a nadie que les explique cómo circula el dinero.",
+ "foot.warn": "Éclipse es un medio de explicación. No es asesoramiento de inversión, ni asesoramiento fiscal, ni una recomendación de compra o de venta. Invertir conlleva un riesgo de pérdida de capital. Para cualquier decisión personal, consulta a un profesional regulado.",
+ "foot.warnL": "Advertencia.",
+ "nav.apropos": "Método y advertencia",
+ "nav.apropos.d": "Cómo verificamos · lo que Éclipse no es",
+ "nav.archives": "Archivo",
+ "nav.archives.d": "Todas las ediciones anteriores",
+ "nav.former": "Formarse",
+ "nav.former.d": "Cursos gratuitos, enlaces revisados",
+ "nav.today": "Hoy",
+ "nav.today.d": "La edición del día",
+ "nl.btn": "Quiero suscribirme",
+ "nl.ko": "La suscripción no se ha completado. Vuelve a intentarlo dentro de un momento.",
+ "nl.label": "Correo electrónico",
+ "nl.ok": "¡Gracias! Ya estás suscrito. La próxima edición llegará a tu bandeja de entrada.",
+ "nl.ph": "tu@correo.com",
+ "nl.small": "Tu dirección se usa solo para enviar Éclipse. Nunca se vende ni se comparte.",
+ "nl.text": "Una noticia descifrada al día, de lunes a viernes. Cinco minutos de lectura, cero jerga, ningún consejo de compra. Gratis, y te vas cuando quieras.",
+ "nl.title": "Recibe Éclipse cada mañana",
+ "nl.wait": "Enviando…",
+ "open": "Abrir el recurso →",
+ "search.count": "Resultados para «{q}»: {n}",
+ "search.editions": "Ediciones",
+ "search.hint": "Escribe una palabra: un país, una cifra, un término («tipos», «presupuesto», «petróleo»…).",
+ "search.none": "Sin resultados para «{q}».",
+ "search.resources": "Recursos para formarse",
+ "search.sections": "Secciones",
+ "search.sug": "¿No encuentras tu tema?",
+ "search.sugBtn": "Proponer este tema",
+ "search.sugText": "Cuéntanos qué te gustaría entender: leemos cada propuesta para elegir los próximos temas.",
+ "site.desc": "Cada mañana, la actualidad económica y geopolítica explicada con sencillez: lo que se dice, lo que significa, lo que cambia para ti.",
+ "site.tag": "La actualidad financiera, descifrada para quien no sabe nada de ella",
+ "site.title": "Éclipse — la actualidad financiera, descifrada",
+ "tag.audit": "Seguimiento gratis",
+ "tag.badge": "Insignia gratuita",
+ "tag.free": "Gratis",
+ "tag.paid": "Certificado de pago",
+ "ui.lang": "Idioma",
+ "ui.mSub": "Suscribirse gratis",
+ "ui.menu": "Menú",
+ "ui.search": "Buscar un tema…",
+ "ui.searchBtn": "Buscar",
+ "ui.subShort": "Suscribirse",
+ "view.apropos.blocks": [
+  {
+   "h": "Qué es Éclipse"
+  },
+  {
+   "p": "Un medio de explicación. De lunes a viernes, una noticia económica, financiera o geopolítica explicada con sencillez, para quienes nunca han tenido a nadie que les explique cómo circula el dinero."
+  },
+  {
+   "h": "Cómo trabajamos"
+  },
+  {
+   "ul": [
+    "**Tres preguntas para cada tema:** lo que se dice, lo que significa, lo que cambia para ti.",
+    "**Cada cifra lleva fecha.** Una cotización sin su hora no significa nada.",
+    "**Vamos a la fuente** (comunicado, texto oficial, estadística) en vez de copiar un artículo. Cuando una fuente secundaria se equivoca, lo señalamos.",
+    "**Cuando un hecho no se puede verificar, escribimos «no verificado».**",
+    "**Distinguimos** lo que está en vigor, lo que está aprobado con efecto futuro y lo que es solo una propuesta.",
+    "**Corregimos.** Todo error detectado se corrige y se señala en la edición correspondiente."
+   ]
+  },
+  {
+   "h": "Lo que no hacemos"
+  },
+  {
+   "ul": [
+    "Nunca recomendamos comprar o vender nada. Éclipse no es ni asesoramiento de inversión ni asesoramiento fiscal.",
+    "Invertir conlleva un riesgo de pérdida de capital. Para cualquier decisión personal, consulta a un profesional regulado.",
+    "Hasta hoy, ningún contenido patrocinado ni enlaces de afiliación."
+   ]
+  },
+  {
+   "h": "Tus datos"
+  },
+  {
+   "p": "Tu correo electrónico se usa únicamente para enviar Éclipse. No se vende ni se comparte, y puedes darte de baja cuando quieras. Si nos escribes para proponer un tema o hacer una pregunta, tu mensaje (y tu correo, si lo dejas) nos llega para responderte y elegir nuestros temas; nunca se publica. La búsqueda se hace en tu navegador: tus palabras clave no se nos envían. El sitio no instala cookies publicitarias. La elección de idioma se guarda en tu navegador y no se transmite."
+  }
+ ],
+ "view.apropos.lead": "Cómo trabaja Éclipse y lo que Éclipse no es.",
+ "view.apropos.title": "Método y advertencia",
+ "view.archives.lead": "Todas las ediciones de Éclipse, de la más reciente a la más antigua.",
+ "view.archives.title": "Archivo",
+ "view.former.lead": "Recursos gratuitos de instituciones que no tienen ningún producto que venderte. Empieza por el primero y avanza en el orden que prefieras.",
+ "view.former.note": "Enlaces revisados el {date}. Las sesiones, las duraciones y el precio de los certificados cambian: compruébalo en la página del curso. Ninguno de estos enlaces es de afiliación.",
+ "view.former.title": "Formarse",
+ "view.search.title": "Búsqueda"
+}

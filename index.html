@@ -3,11 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Éclipse — l'actualité financière, décodée</title>
-<meta name="description" content="Chaque matin, l'actualité économique et géopolitique expliquée simplement : ce qui est dit, ce que ça veut dire, ce que ça change pour vous.">
-<meta property="og:title" content="Éclipse — l'actualité financière, décodée">
+<title>Éclipse — l’actualité financière, décodée</title>
+<meta name="description" content="Chaque matin, l’actualité économique et géopolitique expliquée simplement : ce qui est dit, ce que ça veut dire, ce que ça change pour vous. En français, English, español.">
+<meta name="theme-color" content="#F4F5F7">
+<meta name="eclipse-shell" content="2.0">
+<meta property="og:title" content="Éclipse — l’actualité financière, décodée">
 <meta property="og:description" content="Ce qui est dit. Ce que ça veut dire. Ce que ça change pour vous.">
 <meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='7.5' fill='%23B8690A'/%3E%3Ccircle cx='16.2' cy='10.4' r='7.5' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -30,15 +33,59 @@ p{margin:0}
 a{color:var(--accent)}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .lbl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}   /* masqué à l’écran, lu par les lecteurs d’écran — sans « left:-9999px », qui crée une zone de défilement en RTL */
+[hidden]{display:none!important}
 
 /* masthead */
-.mast{background:var(--surface);border-bottom:1px solid var(--rule)}
-.mast .wrap{display:flex;align-items:center;gap:14px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:10px}
+.mast{background:var(--surface);border-bottom:1px solid var(--rule);position:relative;z-index:40}
+.mast .wrap{display:flex;align-items:center;gap:12px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);margin-inline-end:auto}
 .logo b{font-family:"Newsreader",serif;font-size:25px;font-weight:600;letter-spacing:-.01em}
-.mast .tag{font-size:14px;color:var(--ink-3);border-left:1px solid var(--rule);padding-left:14px}
-@media(max-width:560px){.mast .tag{border-left:none;padding-left:0;width:100%}}
-.mast .date{margin-left:auto}
+.mast .tag{font-size:14px;color:var(--ink-3);order:3;width:100%;line-height:1.4}
+@media(min-width:900px){
+  .mast .wrap{flex-wrap:nowrap}
+  .mast .tag{order:0;width:auto;border-inline-start:1px solid var(--rule);padding-inline-start:14px;margin-inline-end:auto}
+  .logo{margin-inline-end:0}
+}
+.tools{display:flex;align-items:center;gap:8px}
+.tbtn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 13px;border:1px solid var(--rule);border-radius:8px;
+  background:var(--surface);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;cursor:pointer}
+.tbtn:hover{border-color:var(--ink-3)}
+.tbtn[aria-expanded="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tbtn svg{flex:none}
+.btn-sub{display:none;align-items:center;min-height:44px;padding:0 18px;border-radius:8px;background:var(--accent);color:#fff;
+  font-weight:700;font-size:15px;text-decoration:none}
+.btn-sub:hover{background:#9C5808}
+@media(min-width:760px){.btn-sub{display:inline-flex}}
+.dd{position:relative}
+.panel{position:absolute;inset-inline-end:0;top:calc(100% + 8px);width:min(320px,calc(100vw - 36px));background:var(--surface);
+  border:1px solid var(--rule);border-radius:10px;box-shadow:0 18px 40px -18px rgba(16,20,24,.35);padding:8px;z-index:60}
+.panel.narrow{width:min(230px,calc(100vw - 36px))}
+.mi{display:block;padding:11px 13px;border-radius:7px;text-decoration:none;color:var(--ink)}
+.mi:hover,.mi:focus-visible{background:var(--surface-2)}
+.mi b{display:block;font-size:16px;font-weight:700}
+.mi span{display:block;font-size:13px;color:var(--ink-3);line-height:1.35;margin-top:1px}
+.mi[aria-current="page"]{background:var(--accent-soft)}
+.mi[aria-current="page"] b{color:#7C4506}
+.panel .cta{display:block;margin:6px 4px 4px;padding:13px 16px;border-radius:8px;background:var(--accent);color:#fff;text-align:center;
+  font-weight:700;font-size:16px;text-decoration:none}
+.panel .cta:hover{background:#9C5808}
+.panel hr{border:none;border-top:1px solid var(--rule);margin:6px 4px}
+.lopt{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:46px;padding:0 13px;border:none;border-radius:7px;background:none;
+  font:inherit;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:start}
+.lopt:hover{background:var(--surface-2)}
+.lopt[aria-current="true"]{background:var(--accent-soft);color:#7C4506}
+.lopt i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--ink-3)}
+
+/* views */
+.notice{background:var(--accent-soft);border-bottom:1px solid #EBCFA3;color:#5A4211;font-size:14.5px}
+.notice .wrap{padding-top:11px;padding-bottom:11px;display:flex;gap:6px 14px;flex-wrap:wrap;align-items:baseline}
+.notice a{font-weight:700}
+.loading{padding:60px 0;text-align:center;color:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.06em}
+.page{padding-top:44px;padding-bottom:20px}
+.page h1{font-size:clamp(31px,5.6vw,50px);line-height:1.06}
+.page .lead{margin-top:14px;max-width:var(--read);font-size:18px;color:var(--ink-2)}
 
 /* hero */
 .hero{padding:44px 0 34px;border-bottom:1px solid var(--rule)}
@@ -49,14 +96,16 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 /* ticker */
 .tick{background:var(--deep);color:#EDF1F5;overflow-x:auto}
 .tick .row{display:flex;gap:0;min-width:max-content;max-width:var(--maxw);margin:0 auto;padding:0 18px}
-.tick .it{padding:12px 20px 12px 0;margin-right:20px;border-right:1px solid rgba(255,255,255,.14);
+.tick .it{padding:12px 0;padding-inline-end:20px;margin-inline-end:20px;border-inline-end:1px solid rgba(255,255,255,.14);
   display:flex;align-items:baseline;gap:9px;white-space:nowrap}
-.tick .it:last-child{border-right:none}
+.tick .it:last-child{border-inline-end:none}
 .tick .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#93A5B6}
 .tick .v{font-family:"IBM Plex Mono",monospace;font-size:14.5px;font-weight:600;font-variant-numeric:tabular-nums}
 .tick .d{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#93A5B6}
 
 section{padding:44px 0;border-bottom:1px solid var(--rule)}
+section.src{border-bottom:none;padding:26px 0 8px}
+section.src p{font-size:13.5px;color:var(--ink-3);max-width:74ch}
 .sh{margin-bottom:26px}
 .sh h2{font-size:clamp(24px,3.6vw,33px)}
 .sh p{color:var(--ink-2);max-width:var(--read);margin-top:9px;font-size:16px}
@@ -67,7 +116,7 @@ section{padding:44px 0;border-bottom:1px solid var(--rule)}
 .dec .band{display:grid;grid-template-columns:minmax(0,1fr)}
 @media(min-width:800px){.dec .band{grid-template-columns:1fr 1fr 1fr}}
 .dz{padding:17px 22px 20px;border-top:1px solid var(--rule)}
-@media(min-width:800px){.dz{border-left:1px solid var(--rule)}.dz:first-child{border-left:none}}
+@media(min-width:800px){.dz{border-inline-start:1px solid var(--rule)}.dz:first-child{border-inline-start:none}}
 .dz .lbl{display:block;margin-bottom:7px;color:var(--accent)}
 .dz p{font-size:15.5px;color:var(--ink-2)}
 .dz p strong{color:var(--ink);font-weight:600}
@@ -93,203 +142,1328 @@ figcaption{margin:12px auto 0;font-size:13.5px;color:var(--ink-3);text-align:cen
 
 /* watch list */
 .watch{display:grid;gap:13px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
-.w{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:4px;padding:16px 18px}
+.w{background:var(--surface);border:1px solid var(--rule);border-inline-start:3px solid var(--accent);border-radius:4px;padding:16px 18px}
 .w .when{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
 .w b{display:block;margin:6px 0 5px;font-size:16px;font-weight:700;font-family:"Public Sans",sans-serif}
 .w span{font-size:14.5px;color:var(--ink-2)}
 
+/* archives */
+.arlist{list-style:none;margin:26px 0 0;padding:0;border-top:1px solid var(--rule)}
+.arlist a{display:grid;grid-template-columns:1fr;gap:3px 18px;padding:18px 4px;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink)}
+@media(min-width:720px){.arlist a{grid-template-columns:230px 1fr}}
+.arlist a:hover{background:var(--surface)}
+.arlist .ad{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.arlist .at{font-family:"Newsreader",serif;font-size:21px;line-height:1.25}
+.arlist .an{color:var(--ink-3);font-family:"IBM Plex Mono",monospace;font-size:12px;margin-inline-end:8px}
+.empty{padding:26px 0;color:var(--ink-3)}
+
+/* learn */
+.lgrid{display:grid;gap:14px;margin-top:28px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.lcard{background:var(--surface);border:1px solid var(--rule);border-inline-start:3px solid var(--accent);border-radius:4px;padding:18px 20px;display:flex;flex-direction:column;gap:9px}
+.lcard h3{font-family:"Public Sans",sans-serif;font-size:17px;font-weight:700;line-height:1.3;letter-spacing:0}
+.lcard p{font-size:15px;color:var(--ink-2)}
+.lcard .tags{display:flex;gap:6px;flex-wrap:wrap}
+.tg{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--surface-2);color:var(--ink-2);font-weight:600}
+.tg.ok{background:#DDEFE6;color:var(--up)}
+.tg.pay{background:var(--accent-soft);color:#7C4506}
+.lcard a.go{margin-top:auto;align-self:flex-start;font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:1px}
+.fine{margin-top:22px;font-size:13.5px;color:var(--ink-3);max-width:74ch}
+
+/* about */
+.prose{max-width:var(--read)}
+.prose h2{font-size:26px;margin:34px 0 10px}
+.prose p{color:var(--ink-2);margin-top:11px}
+.prose ul{margin:11px 0 0;padding-inline-start:20px;color:var(--ink-2)}
+.prose li{margin-top:8px}
+.prose strong{color:var(--ink)}
+
 /* newsletter */
+.nlwrap{padding:44px 0}
 .nl{background:var(--deep);color:#EDF1F5;border-radius:4px;padding:30px 26px}
 .nl h2{color:#fff;font-size:clamp(23px,3.4vw,31px)}
 .nl p{color:#A9BACA;max-width:52ch;margin-top:10px;font-size:16px}
 .nl form{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;max-width:520px}
-.nl input{flex:1 1 240px;border:1px solid #33465A;background:#11202E;color:#fff;border-radius:3px;
+.nl input[type=email]{flex:1 1 240px;border:1px solid #33465A;background:#11202E;color:#fff;border-radius:3px;
   padding:13px 14px;font-size:16px;font-family:inherit}
 .nl input::placeholder{color:#7A8DA0}
 .nl button{border:none;border-radius:3px;background:var(--accent);color:#fff;font-weight:700;font-size:16px;
   font-family:"Public Sans",sans-serif;padding:13px 24px;cursor:pointer}
 .nl button:hover{background:#9C5808}
+.nl button:disabled{opacity:.6;cursor:wait}
 .nl small{display:block;margin-top:13px;color:#7A8DA0;font-size:13px}
+.nl .msg{margin-top:14px;font-weight:600;color:#8FE0B5;min-height:1.2em}
+.nl .msg.bad{color:#FF9B8A}
+.nl a.nlgo{display:inline-block;margin-top:20px;border-radius:3px;background:var(--accent);color:#fff;font-weight:700;font-size:16px;padding:13px 24px;text-decoration:none}
+.nl a.nlgo:hover{background:#9C5808}
 
-footer{padding:34px 0 60px}
+footer{padding:34px 0 96px;border-top:1px solid var(--rule)}
 footer p{font-size:13.5px;color:var(--ink-3);max-width:74ch}
 footer p + p{margin-top:10px}
 footer .sig{font-family:"Newsreader",serif;font-size:17px;color:var(--ink-2);margin-bottom:14px}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 20px;margin:18px 0}
+footer nav a{font-size:14px;font-weight:600;text-decoration:none;color:var(--ink-2);padding:6px 0}
+footer nav a:hover{color:var(--accent)}
+
+/* recherche */
+.msearch,.sform{display:flex;gap:6px}
+.msearch{margin:4px 4px 8px}
+.msearch input,.sform input{flex:1;min-width:0;min-height:44px;border:1px solid var(--rule);border-radius:8px;padding:0 12px;font:inherit;font-size:16px;background:var(--ground);color:var(--ink)}
+.msearch button,.sform button{flex:none;width:46px;min-height:44px;border:none;border-radius:8px;background:var(--ink);color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.sform{margin-top:22px;max-width:520px}
+.sres{margin-top:8px}
+.rh{font-size:22px;margin:30px 0 8px}
+.rlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.rlist a{display:block;padding:14px 4px;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink)}
+.rlist a:hover{background:var(--surface)}
+.rlist b{display:block;font-size:17px;font-weight:700}
+.rlist span{display:block;font-size:14px;color:var(--ink-3);margin-top:2px}
+.sug{margin-top:34px;padding:22px;border:1px dashed var(--accent);border-radius:6px;background:var(--accent-soft)}
+.sug-hi{border-style:solid}
+.sug h2{font-size:22px}
+.sug p{margin-top:8px;color:#5A4211;max-width:var(--read);font-size:16px}
+.sugbtn{margin-top:14px;min-height:46px;padding:0 20px;border:none;border-radius:8px;background:var(--accent);color:#fff;font:700 16px "Public Sans",sans-serif;cursor:pointer}
+.sugbtn:hover{background:#9C5808}
+
+/* fenêtre de discussion */
+.chatbtn{position:fixed;inset-inline-end:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;display:inline-flex;align-items:center;gap:9px;
+  min-height:52px;padding:0 20px;border:none;border-radius:26px;background:var(--accent);color:#fff;font:700 15px "Public Sans",sans-serif;cursor:pointer;
+  box-shadow:0 12px 28px -10px rgba(16,20,24,.55)}
+.chatbtn:hover{background:#9C5808}
+.chat{position:fixed;z-index:80;inset-inline:0;bottom:0;display:flex;flex-direction:column;max-height:84vh;background:var(--surface);
+  border:1px solid var(--rule);border-radius:14px 14px 0 0;box-shadow:0 -12px 40px -14px rgba(16,20,24,.45);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(min-width:640px){.chat{inset-inline:auto;inset-inline-end:16px;bottom:16px;width:380px;max-height:min(620px,calc(100vh - 32px));border-radius:14px;padding-bottom:0}}
+.chat-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 14px 13px 16px;background:var(--deep);color:#fff;border-radius:13px 13px 0 0}
+.chat-h b{font-family:"Newsreader",serif;font-size:19px;font-weight:600}
+.chat-x{flex:none;width:40px;height:40px;border:none;border-radius:8px;background:rgba(255,255,255,.1);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.chat-x:hover{background:rgba(255,255,255,.2)}
+.chat-log{flex:1;min-height:120px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px}
+.bub{max-width:88%;padding:10px 13px;border-radius:12px;font-size:15.5px;line-height:1.45;overflow-wrap:anywhere;white-space:pre-wrap}
+.bub.bot{align-self:flex-start;background:var(--surface-2);color:var(--ink);border-end-start-radius:3px}
+.bub.me{align-self:flex-end;background:var(--accent-soft);color:#5A4211;border-end-end-radius:3px}
+.chat-in{padding:4px 12px 14px;display:flex;flex-direction:column;gap:8px}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1.5px solid var(--accent);border-radius:22px;background:var(--surface);color:#7C4506;
+  font:700 15px "Public Sans",sans-serif;text-decoration:none;cursor:pointer}
+.choice:hover{background:var(--accent-soft)}
+.choice.skip{align-self:flex-start;border-color:var(--rule);color:var(--ink-2)}
+.cin{display:flex;gap:8px;align-items:flex-end}
+.cin input,.cin textarea{flex:1;min-width:0;border:1px solid var(--rule);border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;background:var(--ground);color:var(--ink);resize:none}
+.cin .cs{flex:none;min-height:46px;padding:0 16px;border:none;border-radius:10px;background:var(--accent);color:#fff;font:700 15px "Public Sans",sans-serif;cursor:pointer}
+.cin .cs:hover{background:#9C5808}
+
+/* langues écrites de droite à gauche (arabe, hébreu…) : pas d’espacement des lettres, sinon les mots se cassent */
+[dir="rtl"] .lbl,[dir="rtl"] .tbtn,[dir="rtl"] .tg,[dir="rtl"] .arlist .ad,[dir="rtl"] .w .when,[dir="rtl"] .tick .k,[dir="rtl"] .lopt i,[dir="rtl"] .tick .d{letter-spacing:0;text-transform:none}
+[dir="rtl"] figure svg{direction:ltr}
 </style>
 </head>
 <body>
 
 <header class="mast">
   <div class="wrap">
-    <div class="logo">
+    <a class="logo" href="#/" id="logo">
       <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true">
         <circle cx="13" cy="13" r="11" fill="none" stroke="#B8690A" stroke-width="1" opacity=".5"/>
         <circle cx="13" cy="13" r="7.5" fill="#B8690A"/>
         <circle cx="16.2" cy="10.4" r="7.5" fill="#FFFFFF"/>
       </svg>
-      <b>Éclipse</b>
+      <b id="siteName">Éclipse</b>
+    </a>
+    <span class="tag" data-i18n="site.tag">L’actualité financière, décodée pour ceux qui n’y connaissent rien</span>
+    <div class="tools">
+      <a class="btn-sub" href="#abonnement" data-i18n="ui.subShort">S’abonner</a>
+
+      <div class="dd">
+        <button class="tbtn" id="langBtn" type="button" aria-expanded="false" aria-controls="langPanel" aria-haspopup="true" data-i18n-label="ui.lang" aria-label="Langue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19"/><path d="M12 2.5c2.6 2.7 4 5.9 4 9.5s-1.4 6.8-4 9.5c-2.6-2.7-4-5.9-4-9.5s1.4-6.8 4-9.5z"/></svg>
+          <span id="langCode">FR</span>
+        </button>
+        <div class="panel narrow" id="langPanel" role="group" hidden data-i18n-label="ui.lang" aria-label="Langue"></div>
+      </div>
+
+      <div class="dd">
+        <button class="tbtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel" aria-haspopup="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></svg>
+          <span data-i18n="ui.menu">Menu</span>
+        </button>
+        <nav class="panel" id="menuPanel" hidden aria-label="Navigation"></nav>
+      </div>
     </div>
-    <span class="tag">L'actualité financière, décodée pour ceux qui n'y connaissent rien</span>
-    <span class="lbl date">Lundi 28 septembre 2026</span>
   </div>
 </header>
 
-<div class="tick">
-  <div class="row">
-    <div class="it"><span class="k">CAC 40</span><span class="v">8 078</span><span class="d">+0,01 %</span></div>
-    <div class="it"><span class="k">Euro Stoxx 50</span><span class="v">+0,11 %</span></div>
-    <div class="it"><span class="k">Brent</span><span class="v">105,79 $</span><span class="d">au-dessus de 100 $</span></div>
-    <div class="it"><span class="k">Or</span><span class="v">4 128,86 $</span></div>
-    <div class="it"><span class="k">Euro / dollar</span><span class="v">1,1371</span></div>
-    <div class="it"><span class="k">Clôtures du</span><span class="v">28.09.2026</span></div>
+<div class="notice" id="notice" hidden><div class="wrap" id="noticeInner"></div></div>
+
+<main id="view"></main>
+
+<!-- Le formulaire doit rester ici, écrit en dur : c’est ainsi que Netlify le repère au déploiement. -->
+<div class="wrap nlwrap" id="abonnement">
+  <div class="nl">
+    <h2 data-i18n="nl.title">Recevez Éclipse chaque matin</h2>
+    <p data-i18n="nl.text">Un décodage par jour.</p>
+    <form name="newsletter" id="nlForm" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="newsletter">
+      <input type="hidden" name="lang" id="nlLang" value="fr">
+      <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
+      <label for="email" class="sr" data-i18n="nl.label">Adresse e-mail</label>
+      <input id="email" type="email" name="email" data-i18n-ph="nl.ph" placeholder="votre@email.fr" required autocomplete="email">
+      <button type="submit" id="nlBtn" data-i18n="nl.btn">Je m’inscris</button>
+    </form>
+    <a class="nlgo" id="nlLink" href="#" target="_blank" rel="noopener" hidden data-i18n="nl.btn">Je m’inscris</a>
+    <p class="msg" id="nlMsg" role="status" aria-live="polite"></p>
+    <small data-i18n="nl.small">Votre adresse sert uniquement à l’envoi d’Éclipse.</small>
   </div>
 </div>
 
-<main class="wrap">
-
-  <div class="hero">
-    <span class="lbl kicker">Édition du jour · n°1</span>
-    <h1>Mercredi, la France présente un budget à 54 milliards d'économies.</h1>
-    <p class="stand">Le pétrole est repassé au-dessus de 105 dollars après avoir chuté la semaine dernière sur un simple espoir diplomatique. C'est toute la leçon de cette première édition : <strong>un espoir n'est pas un fait</strong>, et les marchés apprennent cette différence à leurs dépens, en public, chaque semaine.</p>
+<footer>
+  <div class="wrap">
+    <p class="sig" data-i18n="foot.sig">Éclipse est écrit chaque matin.</p>
+    <nav id="footNav" aria-label="Pied de page"></nav>
+    <p><strong data-i18n="foot.warnL">Avertissement.</strong> <span data-i18n="foot.warn">Éclipse est un média d’explication.</span></p>
+    <p data-i18n="foot.rights">© 2026 Éclipse</p>
   </div>
+</footer>
 
-  <section>
-    <div class="sh">
-      <h2>Trois choses à comprendre aujourd'hui</h2>
-      <p>La même grille à chaque fois : ce qui est dit, ce que ça veut dire, ce que ça change pour vous. Sans jargon — et quand un mot technique est nécessaire, il est expliqué.</p>
+<!-- Formulaire de contact : écrit en dur pour que Netlify le repère. Il est envoyé par la fenêtre de discussion (pas de champ visible ici). -->
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="contact">
+  <input name="kind"><textarea name="message"></textarea><input name="email"><input name="lang"><input name="subject"><input name="bot-field">
+</form>
+
+<button class="chatbtn" id="chatBtn" type="button" aria-expanded="false" aria-controls="chatPanel" hidden>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.5-4.6A8 8 0 1 1 21 12z"/></svg>
+  <span data-i18n="chat.btn">Discuter</span>
+</button>
+<div class="chat" id="chatPanel" role="dialog" aria-labelledby="chatTitle" hidden>
+  <div class="chat-h"><b id="chatTitle" data-i18n="chat.title">Écrivez-nous</b><button type="button" id="chatClose" class="chat-x" data-i18n-label="chat.close" aria-label="Fermer">×</button></div>
+  <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
+  <div class="chat-in" id="chatIn"></div>
+</div>
+
+<noscript><p style="padding:24px;text-align:center">Éclipse demande JavaScript pour afficher l’édition du jour. · Éclipse needs JavaScript to display today’s edition. · Éclipse necesita JavaScript para mostrar la edición del día.</p></noscript>
+
+<!-- Éditions embarquées (générées par build.py) : elles servent de secours si GitHub est injoignable. -->
+<template id="ed-2026-09-28">
+<article id="edition-root" data-date="2026-09-28" data-n="1"
+  data-title-fr="Mercredi, la France présente un budget à 54 milliards d’économies"
+  data-title-en="On Wednesday, France unveils a budget with €54 billion in savings"
+  data-title-es="El miércoles, Francia presenta un presupuesto con 54.000 millones de ahorro">
+
+<div class="ed-lang" lang="fr">
+  <div class="tick">
+    <div class="row">
+      <div class="it"><span class="k">CAC 40</span><span class="v">8 078</span><span class="d">+0,01 %</span></div>
+      <div class="it"><span class="k">Euro Stoxx 50</span><span class="v">+0,11 %</span></div>
+      <div class="it"><span class="k">Brent</span><span class="v">105,79 $</span><span class="d">au-dessus de 100 $</span></div>
+      <div class="it"><span class="k">Or</span><span class="v">4 128,86 $</span></div>
+      <div class="it"><span class="k">Euro / dollar</span><span class="v">1,1371</span></div>
+      <div class="it"><span class="k">Clôtures du</span><span class="v">28.09.2026</span></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero">
+      <span class="lbl kicker">Lundi 28 septembre 2026 · Édition du jour · n°1</span>
+      <h1>Mercredi, la France présente un budget à 54 milliards d’économies.</h1>
+      <p class="stand">Le pétrole est repassé au-dessus de 105 dollars après avoir chuté la semaine dernière sur un simple espoir diplomatique. C’est toute la leçon de cette première édition : <strong>un espoir n’est pas un fait</strong>, et les marchés apprennent cette différence à leurs dépens, en public, chaque semaine.</p>
     </div>
 
-    <article class="dec">
-      <h3>Le budget 2027 arrive mercredi, et il vaut 54 milliards d'euros d'efforts</h3>
-      <div class="band">
-        <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le projet de loi de finances pour 2027 est présenté en Conseil des ministres le <strong>30 septembre</strong>. Le Premier ministre a annoncé un effort de <strong>54 milliards d'euros</strong>, pour ramener le déficit public entre <strong>4,8 % et 5 % du PIB</strong> — contre 6,5 % si rien n'était fait. Pas de hausse d'impôts annoncée, mais un <strong>gel du barème de l'impôt sur le revenu</strong> et du point d'indice des fonctionnaires, et des économies sur les APL et les arrêts maladie.</p></div>
-        <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>« Geler le barème » n'est pas neutre. Chaque année, les tranches d'imposition sont normalement relevées pour suivre l'inflation. Les geler, c'est laisser les salaires progresser pendant que les seuils, eux, ne bougent pas — donc faire entrer des gens dans une tranche supérieure <strong>sans jamais voter de hausse d'impôt</strong>. Les économistes appellent ça la <strong>hausse silencieuse</strong>. C'est une mesure de recettes présentée comme une mesure de stabilité.</p></div>
-        <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Si vos revenus augmentent en 2027, même faiblement, votre impôt peut augmenter plus vite que prévu. Et pour les entreprises : la surtaxe sur les bénéfices des grands groupes est <strong>maintenue mais réduite</strong> — elle rapportera environ 5 milliards par an au lieu de 8 — et les entreprises de taille intermédiaire en sortent. <strong>À vérifier mercredi</strong> : les mesures sur l'épargne, absentes des annonces, mais qui apparaissent souvent dans le texte final.</p></div>
+    <section>
+      <div class="sh">
+        <h2>Trois choses à comprendre aujourd’hui</h2>
+        <p>La même grille à chaque fois : ce qui est dit, ce que ça veut dire, ce que ça change pour vous. Sans jargon — et quand un mot technique est nécessaire, il est expliqué.</p>
       </div>
-    </article>
 
-    <article class="dec">
-      <h3>Le pétrole reprend 6 dollars en une semaine : l'espoir n'a pas tenu</h3>
-      <div class="band">
-        <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le baril de Brent s'échange à <strong>105,79 dollars</strong>. Le 21 septembre, il était repassé <strong>sous 100 dollars</strong> — sa plus forte détente depuis des semaines — parce que le marché tablait sur une reprise des flux au Moyen-Orient et sur des discussions autour de la réouverture du détroit d'Ormuz. Aucun accord n'avait été signé.</p></div>
-        <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>Un prix ne reflète pas la réalité d'aujourd'hui : il reflète <strong>l'opinion moyenne sur la réalité de demain</strong>. Quand cette opinion change, le prix bouge, même si rien n'a changé dans le monde physique. Une vanne réellement fermée, c'est un fait. Une vanne qu'on espère rouvrir, c'est un pari. En une semaine, le marché a payé huit dollars pour un pari, puis les a repris.</p></div>
-        <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Le carburant, le chauffage et le transport suivent — avec plusieurs semaines de retard. Une baisse du baril ne se voit jamais à la pompe le lendemain, et une hausse s'y voit toujours plus vite. Plus largement : un pétrole cher, c'est de l'inflation qui revient, donc des banques centrales qui gardent des taux élevés, donc des crédits immobiliers qui ne baissent pas. <strong>Tout est relié.</strong></p></div>
+      <article class="dec">
+        <h3>Le budget 2027 arrive mercredi, et il vaut 54 milliards d’euros d’efforts</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le projet de loi de finances pour 2027 est présenté en Conseil des ministres le <strong>30 septembre</strong>. Le Premier ministre a annoncé un effort de <strong>54 milliards d’euros</strong>, pour ramener le déficit public entre <strong>4,8 % et 5 % du PIB</strong> — contre 6,5 % si rien n’était fait. Pas de hausse d’impôts annoncée, mais un <strong>gel du barème de l’impôt sur le revenu</strong> et du point d’indice des fonctionnaires, et des économies sur les APL et les arrêts maladie.</p></div>
+          <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>« Geler le barème » n’est pas neutre. Chaque année, les tranches d’imposition sont normalement relevées pour suivre l’inflation. Les geler, c’est laisser les salaires progresser pendant que les seuils, eux, ne bougent pas — donc faire entrer des gens dans une tranche supérieure <strong>sans jamais voter de hausse d’impôt</strong>. Les économistes appellent ça la <strong>hausse silencieuse</strong>. C’est une mesure de recettes présentée comme une mesure de stabilité.</p></div>
+          <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Si vos revenus augmentent en 2027, même faiblement, votre impôt peut augmenter plus vite que prévu. Et pour les entreprises : la surtaxe sur les bénéfices des grands groupes est <strong>maintenue mais réduite</strong> — elle rapportera environ 5 milliards par an au lieu de 8 — et les entreprises de taille intermédiaire en sortent. <strong>À vérifier mercredi</strong> : les mesures sur l’épargne, absentes des annonces, mais qui apparaissent souvent dans le texte final.</p></div>
+        </div>
+      </article>
+
+      <article class="dec">
+        <h3>Le pétrole reprend 6 dollars en une semaine : l’espoir n’a pas tenu</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le baril de Brent s’échange à <strong>105,79 dollars</strong>. Le 21 septembre, il était repassé <strong>sous 100 dollars</strong> — sa plus forte détente depuis des semaines — parce que le marché tablait sur une reprise des flux au Moyen-Orient et sur des discussions autour de la réouverture du détroit d’Ormuz. Aucun accord n’avait été signé.</p></div>
+          <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>Un prix ne reflète pas la réalité d’aujourd’hui : il reflète <strong>l’opinion moyenne sur la réalité de demain</strong>. Quand cette opinion change, le prix bouge, même si rien n’a changé dans le monde physique. Une vanne réellement fermée, c’est un fait. Une vanne qu’on espère rouvrir, c’est un pari. En une semaine, le marché a payé huit dollars pour un pari, puis les a repris.</p></div>
+          <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Le carburant, le chauffage et le transport suivent — avec plusieurs semaines de retard. Une baisse du baril ne se voit jamais à la pompe le lendemain, et une hausse s’y voit toujours plus vite. Plus largement : un pétrole cher, c’est de l’inflation qui revient, donc des banques centrales qui gardent des taux élevés, donc des crédits immobiliers qui ne baissent pas. <strong>Tout est relié.</strong></p></div>
+        </div>
+        <figure>
+          <svg viewBox="0 0 840 186" role="img" aria-label="Chaîne de transmission : le prix du pétrole fait monter l’inflation attendue, qui oblige les banques centrales à maintenir des taux élevés, ce qui renchérit les crédits immobiliers.">
+            <defs>
+              <marker id="ar-fr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"></path></marker>
+            </defs>
+            <rect class="fig-box" x="0.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="80" y="72">Pétrole</text>
+            <text class="fig-s" x="80" y="92">105,79 $ le baril</text>
+            <text class="fig-a" x="193" y="72">fait monter</text>
+            <line x1="167" y1="78" x2="219" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-fr)"></line>
+            <rect class="fig-box" x="227.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="307" y="72">L’inflation</text>
+            <text class="fig-s" x="307" y="92">celle qu’on attend</text>
+            <text class="fig-a" x="420" y="72">oblige</text>
+            <line x1="394" y1="78" x2="446" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-fr)"></line>
+            <rect class="fig-box" x="454.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="534" y="72">Les taux</text>
+            <text class="fig-s" x="534" y="92">maintenus haut</text>
+            <text class="fig-a" x="647" y="72">renchérit</text>
+            <line x1="621" y1="78" x2="673" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-fr)"></line>
+            <rect class="fig-box-hi" x="681.5" y="40" width="158" height="76" rx="3"></rect>
+            <text class="fig-t" x="760" y="72">Votre crédit</text>
+            <text class="fig-s" x="760" y="92">mensualité plus lourde</text>
+            <line x1="80" y1="140" x2="760" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".45"></line>
+            <text class="fig-a" x="420" y="164">des semaines s’écoulent entre chaque maillon</text>
+          </svg>
+          <figcaption>Du baril à votre mensualité. Chaque flèche prend des semaines, parfois des mois : c’est pourquoi une baisse du pétrole aujourd’hui ne se voit ni à la pompe ni chez votre banquier avant longtemps.</figcaption>
+        </figure>
+      </article>
+
+      <article class="dec">
+        <h3>La France emprunte désormais plus cher que l’Italie</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le 18 septembre, l’écart entre le taux auquel la France emprunte à dix ans et celui de l’Allemagne a dépassé <strong>100 points de base</strong> — un point entier — pour la première fois depuis 2012. Résultat spectaculaire : prêter à la France coûte maintenant <strong>un peu plus cher que prêter à l’Italie</strong>, alors que l’Italie est bien plus endettée.</p></div>
+          <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>Les prêteurs ne notent pas un montant de dette, ils notent une <strong>trajectoire</strong> et une capacité à décider. Un pays très endetté mais qui tient son cap inspire plus confiance qu’un pays moins endetté dont le budget dérive et dont la gouvernance change tous les six mois. C’est exactement le raisonnement d’un banquier face à deux emprunteurs : ce n’est pas le montant du crédit qui l’inquiète, c’est la régularité des revenus.</p></div>
+          <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Ce taux à dix ans est la référence des <strong>crédits immobiliers français</strong>. Tant qu’il reste élevé, les mensualités restent élevées et le pouvoir d’achat immobilier ne revient pas. Si vous avez fait une simulation de prêt il y a un an, elle est à refaire. C’est aussi ce qui décale des projets de construction — donc des chantiers, donc de l’emploi.</p></div>
+        </div>
+        <figure>
+          <svg viewBox="0 0 660 214" role="img" aria-label="Taux à dix ans au 21 septembre 2026 : France 4,45 pour cent, Italie 4,37 pour cent, Allemagne 3,46 pour cent. L’écart entre la France et l’Allemagne atteint 99 points de base.">
+            <line x1="150" y1="22" x2="150" y2="158" stroke="currentColor" stroke-width="1" opacity=".35"></line>
+            <text class="fig-l" x="140" y="48" text-anchor="end">France</text>
+            <rect x="150" y="32" width="271" height="30" rx="3" fill="var(--accent)"></rect>
+            <text class="fig-v" x="431" y="52">4,45 %</text>
+            <text class="fig-l" x="140" y="92" text-anchor="end">Italie</text>
+            <rect x="150" y="76" width="266" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+            <text class="fig-v" x="426" y="96">4,37 %</text>
+            <text class="fig-l" x="140" y="136" text-anchor="end">Allemagne</text>
+            <rect x="150" y="120" width="211" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+            <text class="fig-v" x="371" y="140">3,46 %</text>
+            <line x1="361" y1="158" x2="361" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+            <line x1="421" y1="158" x2="421" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+            <line x1="361" y1="180" x2="421" y2="180" stroke="var(--accent)" stroke-width="1.5"></line>
+            <text class="fig-a" x="391" y="200" fill="var(--accent)">99 pb</text>
+          </svg>
+          <figcaption>Ce que coûte un emprunt d’État à dix ans, au 21 septembre 2026. L’écart entre la barre française et la barre allemande — 99 points de base — est le prix que les prêteurs mettent aujourd’hui sur le risque français. Il est passé devant celui de l’Italie.</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section>
+      <div class="word">
+        <span class="lbl">Le mot du jour</span>
+        <h3>Point de base</h3>
+        <p>Un <strong>point de base</strong>, c’est un centième de point de pourcentage. 100 points de base = 1 %. On l’utilise parce que, sur les taux, la précision compte : dire « le taux est passé de 4,45 % à 4,47 % » est illisible, dire « il a pris 2 points de base » est immédiat.</p>
+        <p>Pourquoi ça vous concerne : sur un crédit immobilier de 250 000 € sur 20 ans, <strong>25 points de base — un quart de point — représentent environ 33 € par mois</strong>, soit près de 8 000 € sur la durée du prêt. Ce que les journaux appellent « une petite variation de taux » n’a rien de petit à l’échelle d’un ménage.</p>
       </div>
-      <figure>
-        <svg viewBox="0 0 840 186" role="img" aria-label="Chaine de transmission : le prix du petrole fait monter l'inflation attendue, qui oblige les banques centrales a maintenir des taux eleves, ce qui rencherit les credits immobiliers.">
-          <defs>
-            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"></path>
-            </marker>
-          </defs>
-          <rect class="fig-box" x="0.5" y="40" width="159" height="76" rx="3"></rect>
-          <text class="fig-t" x="80" y="72">Pétrole</text>
-          <text class="fig-s" x="80" y="92">105,79 $ le baril</text>
+    </section>
 
-          <text class="fig-a" x="193" y="72">fait monter</text>
-          <line x1="167" y1="78" x2="219" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
-
-          <rect class="fig-box" x="227.5" y="40" width="159" height="76" rx="3"></rect>
-          <text class="fig-t" x="307" y="72">L&#8217;inflation</text>
-          <text class="fig-s" x="307" y="92">celle qu&#8217;on attend</text>
-
-          <text class="fig-a" x="420" y="72">oblige</text>
-          <line x1="394" y1="78" x2="446" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
-
-          <rect class="fig-box" x="454.5" y="40" width="159" height="76" rx="3"></rect>
-          <text class="fig-t" x="534" y="72">Les taux</text>
-          <text class="fig-s" x="534" y="92">maintenus haut</text>
-
-          <text class="fig-a" x="647" y="72">renchérit</text>
-          <line x1="621" y1="78" x2="673" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
-
-          <rect class="fig-box-hi" x="681.5" y="40" width="158" height="76" rx="3"></rect>
-          <text class="fig-t" x="760" y="72">Votre crédit</text>
-          <text class="fig-s" x="760" y="92">mensualité plus lourde</text>
-
-          <line x1="80" y1="140" x2="760" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".45"></line>
-          <text class="fig-a" x="420" y="164">des semaines s&#8217;écoulent entre chaque maillon</text>
-        </svg>
-        <figcaption>Du baril à votre mensualité. Chaque flèche prend des semaines, parfois des mois : c&#8217;est pourquoi une baisse du pétrole aujourd&#8217;hui ne se voit ni à la pompe ni chez votre banquier avant longtemps.</figcaption>
-      </figure>
-    </article>
-
-    <article class="dec">
-      <h3>La France emprunte désormais plus cher que l'Italie</h3>
-      <div class="band">
-        <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le 18 septembre, l'écart entre le taux auquel la France emprunte à dix ans et celui de l'Allemagne a dépassé <strong>100 points de base</strong> — un point entier — pour la première fois depuis 2012. Résultat spectaculaire : prêter à la France coûte maintenant <strong>un peu plus cher que prêter à l'Italie</strong>, alors que l'Italie est bien plus endettée.</p></div>
-        <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>Les prêteurs ne notent pas un montant de dette, ils notent une <strong>trajectoire</strong> et une capacité à décider. Un pays très endetté mais qui tient son cap inspire plus confiance qu'un pays moins endetté dont le budget dérive et dont la gouvernance change tous les six mois. C'est exactement le raisonnement d'un banquier face à deux emprunteurs : ce n'est pas le montant du crédit qui l'inquiète, c'est la régularité des revenus.</p></div>
-        <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Ce taux à dix ans est la référence des <strong>crédits immobiliers français</strong>. Tant qu'il reste élevé, les mensualités restent élevées et le pouvoir d'achat immobilier ne revient pas. Si vous avez fait une simulation de prêt il y a un an, elle est à refaire. C'est aussi ce qui décale des projets de construction — donc des chantiers, donc de l'emploi.</p></div>
+    <section>
+      <div class="sh">
+        <h2>À surveiller cette semaine</h2>
+        <p>Les marchés ne réagissent pas au hasard : ils réagissent à des dates connues à l’avance. Les voici.</p>
       </div>
-      <figure>
-        <svg viewBox="0 0 660 214" role="img" aria-label="Taux a dix ans au 21 septembre 2026 : France 4,45 pour cent, Italie 4,37 pour cent, Allemagne 3,46 pour cent. L'ecart entre la France et l'Allemagne atteint 99 points de base.">
-          <line x1="150" y1="22" x2="150" y2="158" stroke="currentColor" stroke-width="1" opacity=".35"></line>
+      <div class="watch">
+        <div class="w"><span class="when">Mercredi 30 septembre</span><b>Présentation du budget 2027</b><span>Conseil des ministres. Le texte complet dira ce que les annonces ont tu — en particulier sur l’épargne.</span></div>
+        <div class="w"><span class="when">Cette semaine</span><b>Inflation en zone euro</b><span>Le chiffre qui décidera de la prochaine décision de la Banque centrale européenne, et donc du coût de votre crédit.</span></div>
+        <div class="w"><span class="when">En continu</span><b>Le détroit d’Ormuz</b><span>Un accord formel et daté ferait retomber le pétrole durablement. Une déclaration d’intention, non — on vient de le voir.</span></div>
+      </div>
+    </section>
 
-          <text class="fig-l" x="140" y="48" text-anchor="end">France</text>
-          <rect x="150" y="32" width="271" height="30" rx="3" fill="var(--accent)"></rect>
-          <text class="fig-v" x="431" y="52">4,45 %</text>
+    <section class="src">
+      <p><strong>Sources du jour</strong> — Clôtures et cours du 28 septembre 2026 : Boursorama. Annonces budgétaires 2027 : déclarations du Premier ministre relayées par LégiFiscal, projet présenté en Conseil des ministres le 30 septembre. Écart de taux France-Allemagne : relevés du 18 au 21 septembre 2026. Chaque chiffre est daté ; un chiffre de marché sans son heure ne veut rien dire.</p>
+    </section>
+  </div>
+</div>
 
-          <text class="fig-l" x="140" y="92" text-anchor="end">Italie</text>
-          <rect x="150" y="76" width="266" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
-          <text class="fig-v" x="426" y="96">4,37 %</text>
-
-          <text class="fig-l" x="140" y="136" text-anchor="end">Allemagne</text>
-          <rect x="150" y="120" width="211" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
-          <text class="fig-v" x="371" y="140">3,46 %</text>
-
-          <line x1="361" y1="158" x2="361" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
-          <line x1="421" y1="158" x2="421" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
-          <line x1="361" y1="180" x2="421" y2="180" stroke="var(--accent)" stroke-width="1.5"></line>
-          <text class="fig-a" x="391" y="200" fill="var(--accent)">99 pb</text>
-        </svg>
-        <figcaption>Ce que coûte un emprunt d&#8217;État à dix ans, au 21 septembre 2026. L&#8217;écart entre la barre française et la barre allemande — 99 points de base — est le prix que les prêteurs mettent aujourd&#8217;hui sur le risque français. Il est passé devant celui de l&#8217;Italie.</figcaption>
-      </figure>
-    </article>
-  </section>
-
-  <section>
-    <div class="word">
-      <span class="lbl">Le mot du jour</span>
-      <h3>Point de base</h3>
-      <p>Un <strong>point de base</strong>, c'est un centième de point de pourcentage. 100 points de base = 1 %. On l'utilise parce que, sur les taux, la précision compte : dire « le taux est passé de 4,45 % à 4,47 % » est illisible, dire « il a pris 2 points de base » est immédiat.</p>
-      <p>Pourquoi ça vous concerne : sur un crédit immobilier de 250 000 € sur 20 ans, <strong>25 points de base — un quart de point — représentent environ 30 € par mois</strong>, soit près de 7 000 € sur la durée du prêt. Ce que les journaux appellent « une petite variation de taux » n'a rien de petit à l'échelle d'un ménage.</p>
+<div class="ed-lang" lang="en" hidden>
+  <div class="tick">
+    <div class="row">
+      <div class="it"><span class="k">CAC 40</span><span class="v">8,078</span><span class="d">+0.01%</span></div>
+      <div class="it"><span class="k">Euro Stoxx 50</span><span class="v">+0.11%</span></div>
+      <div class="it"><span class="k">Brent</span><span class="v">$105.79</span><span class="d">above $100</span></div>
+      <div class="it"><span class="k">Gold</span><span class="v">$4,128.86</span></div>
+      <div class="it"><span class="k">Euro / dollar</span><span class="v">1.1371</span></div>
+      <div class="it"><span class="k">Closes on</span><span class="v">Sep 28, 2026</span></div>
     </div>
-  </section>
-
-  <section>
-    <div class="sh">
-      <h2>À surveiller cette semaine</h2>
-      <p>Les marchés ne réagissent pas au hasard : ils réagissent à des dates connues à l'avance. Les voici.</p>
+  </div>
+  <div class="wrap">
+    <div class="hero">
+      <span class="lbl kicker">Monday, September 28, 2026 · Today’s edition · No. 1</span>
+      <h1>On Wednesday, France unveils a budget with €54 billion in savings.</h1>
+      <p class="stand">Oil is back above $105 after plunging last week on a mere diplomatic hope. That is the whole lesson of this first edition: <strong>a hope is not a fact</strong>, and markets learn the difference the hard way, in public, every week.</p>
     </div>
-    <div class="watch">
-      <div class="w"><span class="when">Mercredi 30 septembre</span><b>Présentation du budget 2027</b><span>Conseil des ministres. Le texte complet dira ce que les annonces ont tu — en particulier sur l'épargne.</span></div>
-      <div class="w"><span class="when">Cette semaine</span><b>Inflation en zone euro</b><span>Le chiffre qui décidera de la prochaine décision de la Banque centrale européenne, et donc du coût de votre crédit.</span></div>
-      <div class="w"><span class="when">En continu</span><b>Le détroit d'Ormuz</b><span>Un accord formel et daté ferait retomber le pétrole durablement. Une déclaration d'intention, non — on vient de le voir.</span></div>
+
+    <section>
+      <div class="sh">
+        <h2>Three things to understand today</h2>
+        <p>The same grid every time: what is said, what it means, what it changes for you. No jargon — and when a technical word is needed, it is explained.</p>
+      </div>
+
+      <article class="dec">
+        <h3>The 2027 budget arrives Wednesday, and it is worth €54 billion in savings efforts</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">What is said</span><p>The 2027 finance bill is presented to the Council of Ministers on <strong>September 30</strong>. The Prime Minister announced an effort of <strong>€54 billion</strong>, to bring the public deficit down to between <strong>4.8% and 5% of GDP</strong> — versus 6.5% if nothing were done. No tax increase announced, but a <strong>freeze on the income-tax brackets</strong> and on the civil-service pay index, and savings on housing benefits (APL) and sick leave.</p></div>
+          <div class="dz"><span class="lbl">What it means</span><p>“Freezing the brackets” is not neutral. Every year, tax brackets are normally raised to keep pace with inflation. Freezing them means letting wages rise while the thresholds stay put — so people move into a higher bracket <strong>without a tax increase ever being voted</strong>. Economists call this a <strong>stealth tax rise</strong>. It is a revenue measure presented as a stability measure.</p></div>
+          <div class="dz"><span class="lbl">What it changes for you</span><p>If your income rises in 2027, even slightly, your tax bill may rise faster than expected. And for companies: the surtax on large groups’ profits is <strong>kept but reduced</strong> — it will raise about €5 billion a year instead of €8 billion — and mid-sized companies are taken out of it. <strong>To check on Wednesday</strong>: measures on savings, absent from the announcements but which often appear in the final text.</p></div>
+        </div>
+      </article>
+
+      <article class="dec">
+        <h3>Oil regains $6 in a week: the hope did not hold</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">What is said</span><p>Brent crude trades at <strong>$105.79</strong>. On September 21 it had fallen back <strong>below $100</strong> — its sharpest easing in weeks — because the market was betting on a resumption of Middle East flows and on talks about reopening the Strait of Hormuz. No agreement had been signed.</p></div>
+          <div class="dz"><span class="lbl">What it means</span><p>A price does not reflect today’s reality: it reflects <strong>the average opinion about tomorrow’s reality</strong>. When that opinion changes, the price moves, even if nothing has changed in the physical world. A valve that is really closed is a fact. A valve people hope will reopen is a bet. In one week, the market paid eight dollars for a bet, then took them back.</p></div>
+          <div class="dz"><span class="lbl">What it changes for you</span><p>Fuel, heating and transport follow — with a lag of several weeks. A drop in crude never shows at the pump the next day, and a rise always shows faster. More broadly: expensive oil means inflation coming back, so central banks keeping rates high, so mortgages that do not come down. <strong>Everything is connected.</strong></p></div>
+        </div>
+        <figure>
+          <svg viewBox="0 0 840 186" role="img" aria-label="Transmission chain: the oil price pushes expected inflation up, which forces central banks to keep interest rates high, which makes mortgages more expensive.">
+            <defs>
+              <marker id="ar-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"></path></marker>
+            </defs>
+            <rect class="fig-box" x="0.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="80" y="72">Oil</text>
+            <text class="fig-s" x="80" y="92">$105.79 a barrel</text>
+            <text class="fig-a" x="193" y="72">pushes up</text>
+            <line x1="167" y1="78" x2="219" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-en)"></line>
+            <rect class="fig-box" x="227.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="307" y="72">Inflation</text>
+            <text class="fig-s" x="307" y="92">the expected kind</text>
+            <text class="fig-a" x="420" y="72">forces</text>
+            <line x1="394" y1="78" x2="446" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-en)"></line>
+            <rect class="fig-box" x="454.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="534" y="72">Interest rates</text>
+            <text class="fig-s" x="534" y="92">kept high</text>
+            <text class="fig-a" x="647" y="72">weighs on</text>
+            <line x1="621" y1="78" x2="673" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-en)"></line>
+            <rect class="fig-box-hi" x="681.5" y="40" width="158" height="76" rx="3"></rect>
+            <text class="fig-t" x="760" y="72">Your mortgage</text>
+            <text class="fig-s" x="760" y="92">heavier monthly payment</text>
+            <line x1="80" y1="140" x2="760" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".45"></line>
+            <text class="fig-a" x="420" y="164">weeks pass between each link</text>
+          </svg>
+          <figcaption>From the barrel to your monthly payment. Each arrow takes weeks, sometimes months: that is why a fall in oil today shows up neither at the pump nor at your bank for a long time.</figcaption>
+        </figure>
+      </article>
+
+      <article class="dec">
+        <h3>France now borrows at a higher rate than Italy</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">What is said</span><p>On September 18, the gap between the rate at which France borrows for ten years and Germany’s rate exceeded <strong>100 basis points</strong> — a full percentage point — for the first time since 2012. The striking result: lending to France now costs <strong>slightly more than lending to Italy</strong>, even though Italy is far more indebted.</p></div>
+          <div class="dz"><span class="lbl">What it means</span><p>Lenders do not rate an amount of debt, they rate a <strong>trajectory</strong> and an ability to decide. A heavily indebted country that holds its course inspires more trust than a less indebted one whose budget drifts and whose government changes every six months. It is exactly a banker’s reasoning faced with two borrowers: it is not the size of the loan that worries them, it is the regularity of income.</p></div>
+          <div class="dz"><span class="lbl">What it changes for you</span><p>This ten-year rate is the benchmark for <strong>French mortgages</strong>. As long as it stays high, monthly payments stay high and housing purchasing power does not come back. If you ran a loan simulation a year ago, it needs redoing. It is also what delays construction projects — so building sites, so jobs.</p></div>
+        </div>
+        <figure>
+          <svg viewBox="0 0 660 214" role="img" aria-label="Ten-year rates on September 21, 2026: France 4.45%, Italy 4.37%, Germany 3.46%. The gap between France and Germany reaches 99 basis points.">
+            <line x1="150" y1="22" x2="150" y2="158" stroke="currentColor" stroke-width="1" opacity=".35"></line>
+            <text class="fig-l" x="140" y="48" text-anchor="end">France</text>
+            <rect x="150" y="32" width="271" height="30" rx="3" fill="var(--accent)"></rect>
+            <text class="fig-v" x="431" y="52">4.45%</text>
+            <text class="fig-l" x="140" y="92" text-anchor="end">Italy</text>
+            <rect x="150" y="76" width="266" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+            <text class="fig-v" x="426" y="96">4.37%</text>
+            <text class="fig-l" x="140" y="136" text-anchor="end">Germany</text>
+            <rect x="150" y="120" width="211" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+            <text class="fig-v" x="371" y="140">3.46%</text>
+            <line x1="361" y1="158" x2="361" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+            <line x1="421" y1="158" x2="421" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+            <line x1="361" y1="180" x2="421" y2="180" stroke="var(--accent)" stroke-width="1.5"></line>
+            <text class="fig-a" x="391" y="200" fill="var(--accent)">99 bp</text>
+          </svg>
+          <figcaption>What a ten-year government loan costs, as of September 21, 2026. The gap between the French bar and the German bar — 99 basis points — is the price lenders now put on French risk. It has moved ahead of Italy’s.</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section>
+      <div class="word">
+        <span class="lbl">Word of the day</span>
+        <h3>Basis point</h3>
+        <p>A <strong>basis point</strong> is one hundredth of a percentage point. 100 basis points = 1%. It is used because, for rates, precision matters: saying “the rate went from 4.45% to 4.47%” is unreadable, saying “it gained 2 basis points” is immediate.</p>
+        <p>Why it concerns you: on a €250,000 mortgage over 20 years, <strong>25 basis points — a quarter of a point — is about €33 a month</strong>, nearly €8,000 over the life of the loan. What newspapers call “a small change in rates” is nothing small at household scale.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sh">
+        <h2>Watch this week</h2>
+        <p>Markets do not react at random: they react to dates known in advance. Here they are.</p>
+      </div>
+      <div class="watch">
+        <div class="w"><span class="when">Wednesday, September 30</span><b>2027 budget presentation</b><span>Council of Ministers. The full text will say what the announcements left out — especially on savings.</span></div>
+        <div class="w"><span class="when">This week</span><b>Eurozone inflation</b><span>The figure that will decide the European Central Bank’s next decision, and therefore the cost of your loan.</span></div>
+        <div class="w"><span class="when">Ongoing</span><b>The Strait of Hormuz</b><span>A formal, dated agreement would bring oil down durably. A statement of intent would not — we have just seen that.</span></div>
+      </div>
+    </section>
+
+    <section class="src">
+      <p><strong>Sources of the day</strong> — Closes and prices for September 28, 2026: Boursorama. 2027 budget announcements: statements by the Prime Minister relayed by LégiFiscal, bill presented to the Council of Ministers on September 30. France–Germany rate gap: readings from September 18 to 21, 2026. Every figure is dated; a market figure without its time means nothing.</p>
+    </section>
+  </div>
+</div>
+
+<div class="ed-lang" lang="es" hidden>
+  <div class="tick">
+    <div class="row">
+      <div class="it"><span class="k">CAC 40</span><span class="v">8.078</span><span class="d">+0,01 %</span></div>
+      <div class="it"><span class="k">Euro Stoxx 50</span><span class="v">+0,11 %</span></div>
+      <div class="it"><span class="k">Brent</span><span class="v">105,79 $</span><span class="d">por encima de 100 $</span></div>
+      <div class="it"><span class="k">Oro</span><span class="v">4.128,86 $</span></div>
+      <div class="it"><span class="k">Euro / dólar</span><span class="v">1,1371</span></div>
+      <div class="it"><span class="k">Cierres del</span><span class="v">28.09.2026</span></div>
     </div>
-  </section>
-
-  <section>
-    <div class="nl">
-      <h2>Recevez Éclipse chaque matin</h2>
-      <p>Un décodage par jour, du lundi au vendredi. Cinq minutes de lecture, zéro jargon, aucun conseil d'achat. Gratuit, et vous partez quand vous voulez.</p>
-      <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="newsletter">
-        <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
-        <label for="email" class="lbl" style="position:absolute;left:-9999px">Adresse e-mail</label>
-        <input id="email" type="email" name="email" placeholder="votre@email.fr" required>
-        <button type="submit">Je m'inscris</button>
-      </form>
-      <small>Votre adresse sert uniquement à l'envoi d'Éclipse. Aucune revente, aucun partage.</small>
+  </div>
+  <div class="wrap">
+    <div class="hero">
+      <span class="lbl kicker">Lunes 28 de septiembre de 2026 · Edición del día · n.º 1</span>
+      <h1>El miércoles, Francia presenta un presupuesto con 54.000 millones de euros de ahorro.</h1>
+      <p class="stand">El petróleo ha vuelto a superar los 105 dólares tras desplomarse la semana pasada por una simple esperanza diplomática. Esa es toda la lección de esta primera edición: <strong>una esperanza no es un hecho</strong>, y los mercados aprenden la diferencia a su costa, en público, cada semana.</p>
     </div>
-  </section>
 
-  <footer>
-    <p class="sig">Éclipse est écrit chaque matin pour les gens à qui personne n'a jamais expliqué comment l'argent circule.</p>
-    <p><strong>Avertissement.</strong> Éclipse est un média d'explication. Ce n'est ni un conseil en investissement, ni un conseil fiscal, ni une recommandation d'achat ou de vente. Investir comporte un risque de perte en capital. Pour toute décision personnelle, adressez-vous à un professionnel réglementé.</p>
-    <p><strong>Sources du jour</strong> — Clôtures et cours du 28 septembre 2026 : Boursorama. Annonces budgétaires 2027 : déclarations du Premier ministre relayées par LégiFiscal, projet présenté en Conseil des ministres le 30 septembre. Écart de taux France-Allemagne : relevés du 18 au 21 septembre 2026. Chaque chiffre est daté ; un chiffre de marché sans son heure ne veut rien dire.</p>
-    <p>© 2026 Éclipse</p>
-  </footer>
+    <section>
+      <div class="sh">
+        <h2>Tres cosas que entender hoy</h2>
+        <p>La misma parrilla cada vez: lo que se dice, lo que significa, lo que cambia para ti. Sin jerga — y cuando hace falta una palabra técnica, se explica.</p>
+      </div>
 
-</main>
+      <article class="dec">
+        <h3>El presupuesto de 2027 llega el miércoles y supone 54.000 millones de euros de esfuerzo</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">Lo que se dice</span><p>El proyecto de ley de presupuestos para 2027 se presenta en el Consejo de Ministros el <strong>30 de septiembre</strong>. El primer ministro ha anunciado un esfuerzo de <strong>54.000 millones de euros</strong> para reducir el déficit público a entre el <strong>4,8 % y el 5 % del PIB</strong>, frente al 6,5 % si no se hiciera nada. No se anuncia ninguna subida de impuestos, pero sí una <strong>congelación de la escala del impuesto sobre la renta</strong> y del punto de índice de los funcionarios, además de recortes en las ayudas a la vivienda (APL) y en las bajas por enfermedad.</p></div>
+          <div class="dz"><span class="lbl">Lo que significa</span><p>«Congelar la escala» no es neutro. Cada año, los tramos del impuesto se actualizan normalmente para seguir a la inflación. Congelarlos supone dejar que los salarios suban mientras los umbrales no se mueven, de modo que la gente pasa a un tramo superior <strong>sin que nadie haya votado nunca una subida de impuestos</strong>. Los economistas lo llaman <strong>subida silenciosa</strong>. Es una medida para recaudar presentada como una medida de estabilidad.</p></div>
+          <div class="dz"><span class="lbl">Lo que cambia para ti</span><p>Si tus ingresos suben en 2027, aunque sea poco, tu impuesto puede subir más deprisa de lo previsto. Y para las empresas: la sobretasa sobre los beneficios de los grandes grupos se <strong>mantiene, pero reducida</strong> —recaudará unos 5.000 millones al año en lugar de 8.000— y las empresas de tamaño intermedio quedan fuera. <strong>A comprobar el miércoles</strong>: las medidas sobre el ahorro, ausentes de los anuncios pero que a menudo aparecen en el texto final.</p></div>
+        </div>
+      </article>
+
+      <article class="dec">
+        <h3>El petróleo recupera 6 dólares en una semana: la esperanza no aguantó</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">Lo que se dice</span><p>El barril de Brent cotiza a <strong>105,79 dólares</strong>. El 21 de septiembre había caído por <strong>debajo de 100 dólares</strong> —su mayor relajación en semanas— porque el mercado apostaba por una reanudación de los flujos en Oriente Medio y por conversaciones sobre la reapertura del estrecho de Ormuz. No se había firmado ningún acuerdo.</p></div>
+          <div class="dz"><span class="lbl">Lo que significa</span><p>Un precio no refleja la realidad de hoy: refleja <strong>la opinión media sobre la realidad de mañana</strong>. Cuando esa opinión cambia, el precio se mueve, aunque nada haya cambiado en el mundo físico. Una válvula realmente cerrada es un hecho. Una válvula que se espera que se reabra es una apuesta. En una semana, el mercado pagó ocho dólares por una apuesta y luego los recuperó.</p></div>
+          <div class="dz"><span class="lbl">Lo que cambia para ti</span><p>El combustible, la calefacción y el transporte siguen el movimiento, con varias semanas de retraso. Una bajada del barril nunca se nota en el surtidor al día siguiente, y una subida se nota siempre más rápido. En general: un petróleo caro es inflación que vuelve, es decir, bancos centrales que mantienen los tipos altos, es decir, hipotecas que no bajan. <strong>Todo está conectado.</strong></p></div>
+        </div>
+        <figure>
+          <svg viewBox="0 0 840 186" role="img" aria-label="Cadena de transmisión: el precio del petróleo hace subir la inflación esperada, que obliga a los bancos centrales a mantener los tipos altos, lo que encarece las hipotecas.">
+            <defs>
+              <marker id="ar-es" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"></path></marker>
+            </defs>
+            <rect class="fig-box" x="0.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="80" y="72">Petróleo</text>
+            <text class="fig-s" x="80" y="92">105,79 $ el barril</text>
+            <text class="fig-a" x="193" y="72">empuja</text>
+            <line x1="167" y1="78" x2="219" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-es)"></line>
+            <rect class="fig-box" x="227.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="307" y="72">La inflación</text>
+            <text class="fig-s" x="307" y="92">la que se espera</text>
+            <text class="fig-a" x="420" y="72">obliga</text>
+            <line x1="394" y1="78" x2="446" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-es)"></line>
+            <rect class="fig-box" x="454.5" y="40" width="159" height="76" rx="3"></rect>
+            <text class="fig-t" x="534" y="72">Los tipos</text>
+            <text class="fig-s" x="534" y="92">se mantienen altos</text>
+            <text class="fig-a" x="647" y="72">encarece</text>
+            <line x1="621" y1="78" x2="673" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-es)"></line>
+            <rect class="fig-box-hi" x="681.5" y="40" width="158" height="76" rx="3"></rect>
+            <text class="fig-t" x="760" y="72">Tu hipoteca</text>
+            <text class="fig-s" x="760" y="92">cuota más pesada</text>
+            <line x1="80" y1="140" x2="760" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".45"></line>
+            <text class="fig-a" x="420" y="164">pasan semanas entre cada eslabón</text>
+          </svg>
+          <figcaption>Del barril a tu cuota mensual. Cada flecha tarda semanas, a veces meses: por eso una bajada del petróleo hoy no se ve ni en el surtidor ni en tu banco hasta dentro de mucho.</figcaption>
+        </figure>
+      </article>
+
+      <article class="dec">
+        <h3>Francia se endeuda ahora a un tipo más alto que Italia</h3>
+        <div class="band">
+          <div class="dz"><span class="lbl">Lo que se dice</span><p>El 18 de septiembre, la diferencia entre el tipo al que se endeuda Francia a diez años y el de Alemania superó los <strong>100 puntos básicos</strong> —un punto entero— por primera vez desde 2012. El resultado es llamativo: prestar a Francia cuesta ahora <strong>un poco más que prestar a Italia</strong>, aunque Italia está mucho más endeudada.</p></div>
+          <div class="dz"><span class="lbl">Lo que significa</span><p>Los prestamistas no puntúan una cantidad de deuda, puntúan una <strong>trayectoria</strong> y una capacidad de decidir. Un país muy endeudado que mantiene el rumbo inspira más confianza que uno menos endeudado cuyo presupuesto se desvía y cuyo gobierno cambia cada seis meses. Es exactamente el razonamiento de un banquero ante dos prestatarios: no le inquieta el importe del préstamo, sino la regularidad de los ingresos.</p></div>
+          <div class="dz"><span class="lbl">Lo que cambia para ti</span><p>Este tipo a diez años es la referencia de las <strong>hipotecas francesas</strong>. Mientras siga alto, las cuotas siguen altas y el poder adquisitivo inmobiliario no vuelve. Si hiciste una simulación de préstamo hace un año, hay que rehacerla. También es lo que retrasa proyectos de construcción, y con ellos obras y empleo.</p></div>
+        </div>
+        <figure>
+          <svg viewBox="0 0 660 214" role="img" aria-label="Tipos a diez años el 21 de septiembre de 2026: Francia 4,45 %, Italia 4,37 %, Alemania 3,46 %. La diferencia entre Francia y Alemania alcanza los 99 puntos básicos.">
+            <line x1="150" y1="22" x2="150" y2="158" stroke="currentColor" stroke-width="1" opacity=".35"></line>
+            <text class="fig-l" x="140" y="48" text-anchor="end">Francia</text>
+            <rect x="150" y="32" width="271" height="30" rx="3" fill="var(--accent)"></rect>
+            <text class="fig-v" x="431" y="52">4,45 %</text>
+            <text class="fig-l" x="140" y="92" text-anchor="end">Italia</text>
+            <rect x="150" y="76" width="266" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+            <text class="fig-v" x="426" y="96">4,37 %</text>
+            <text class="fig-l" x="140" y="136" text-anchor="end">Alemania</text>
+            <rect x="150" y="120" width="211" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+            <text class="fig-v" x="371" y="140">3,46 %</text>
+            <line x1="361" y1="158" x2="361" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+            <line x1="421" y1="158" x2="421" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+            <line x1="361" y1="180" x2="421" y2="180" stroke="var(--accent)" stroke-width="1.5"></line>
+            <text class="fig-a" x="391" y="200" fill="var(--accent)">99 pb</text>
+          </svg>
+          <figcaption>Lo que cuesta un préstamo de Estado a diez años, a 21 de septiembre de 2026. La diferencia entre la barra francesa y la alemana —99 puntos básicos— es el precio que los prestamistas ponen hoy al riesgo francés. Ya supera al de Italia.</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section>
+      <div class="word">
+        <span class="lbl">La palabra del día</span>
+        <h3>Punto básico</h3>
+        <p>Un <strong>punto básico</strong> es una centésima de punto porcentual. 100 puntos básicos = 1 %. Se usa porque, en los tipos, la precisión importa: decir «el tipo ha pasado del 4,45 % al 4,47 %» es ilegible; decir «ha subido 2 puntos básicos» es inmediato.</p>
+        <p>Por qué te concierne: en una hipoteca de 250.000 € a 20 años, <strong>25 puntos básicos —un cuarto de punto— suponen unos 33 € al mes</strong>, casi 8.000 € a lo largo del préstamo. Lo que los periódicos llaman «una pequeña variación de tipos» no tiene nada de pequeño a escala de un hogar.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sh">
+        <h2>A vigilar esta semana</h2>
+        <p>Los mercados no reaccionan al azar: reaccionan a fechas conocidas de antemano. Aquí están.</p>
+      </div>
+      <div class="watch">
+        <div class="w"><span class="when">Miércoles 30 de septiembre</span><b>Presentación del presupuesto 2027</b><span>Consejo de Ministros. El texto completo dirá lo que los anuncios callaron, sobre todo en materia de ahorro.</span></div>
+        <div class="w"><span class="when">Esta semana</span><b>Inflación en la eurozona</b><span>La cifra que decidirá la próxima decisión del Banco Central Europeo y, por tanto, el coste de tu préstamo.</span></div>
+        <div class="w"><span class="when">En continuo</span><b>El estrecho de Ormuz</b><span>Un acuerdo formal y fechado haría bajar el petróleo de forma duradera. Una declaración de intenciones, no: acabamos de verlo.</span></div>
+      </div>
+    </section>
+
+    <section class="src">
+      <p><strong>Fuentes del día</strong> — Cierres y cotizaciones del 28 de septiembre de 2026: Boursorama. Anuncios presupuestarios de 2027: declaraciones del primer ministro difundidas por LégiFiscal; proyecto presentado en el Consejo de Ministros el 30 de septiembre. Diferencia de tipos Francia-Alemania: lecturas del 18 al 21 de septiembre de 2026. Cada cifra lleva fecha; una cifra de mercado sin su hora no significa nada.</p>
+    </section>
+  </div>
+</div>
+
+</article>
+</template>
+
+<script>
+(function(){
+"use strict";
+
+/* ==========================================================================
+   COQUE DU SITE — ce fichier change rarement.
+   Ce qui évolue au quotidien vit dans des fichiers lus au chargement :
+     site.json          langues, menu, réseaux, mode d’inscription
+     lang-XX.json       tous les textes d’une langue (interface + page « méthode »)
+     formations.json    la liste « Se former »
+     edition.html       l’édition du jour   ·   editions/AAAA-MM-JJ.html   ·   archives.json
+   Une copie de secours de tout cela est embarquée ci-dessous (EMBED) : si un fichier
+   est illisible ou introuvable, le site reste complet.
+   ========================================================================== */
+
+var SHELL_VERSION = "2.0";
+var RAW  = "https://raw.githubusercontent.com/leniemylo-cmyk/eclipse-site/main/";          // dépôt public : lire ici ne redéploie jamais Netlify
+var EMBED = {"site":{"schema":1,"name":"Éclipse","defaultLang":"fr","langs":[{"code":"fr","name":"Français","tag":"fr-FR","dir":"ltr","edition":true,"style":"Vouvoiement (vous). Nombres à la française : 8 078 et 4,45 %."},{"code":"en","name":"English","tag":"en-US","dir":"ltr","edition":true,"style":"Address the reader as “you”. English numbers: 8,078 and 4.45%."},{"code":"es","name":"Español","tag":"es-ES","dir":"ltr","edition":true,"style":"Tutear al lector (tú). Números a la española : 8.078 y 4,45 %."}],"nav":[{"id":"today","type":"edition","menu":true,"footer":true},{"id":"archives","type":"archives","menu":true,"footer":true},{"id":"former","type":"cards","data":"formations.json","menu":true,"footer":true},{"id":"apropos","type":"page","menu":true,"footer":true}],"newsletter":{"mode":"netlify","form":"newsletter","url":""},"social":[],"search":{"enabled":true},"chat":{"enabled":true,"intents":["subscribe","topic","question"]}},"lang":{"en":{"ar.empty":"No archived edition yet.","ar.no":"No. ","chat.back":"Back","chat.bad.email":"That address doesn’t look valid. Could you check it?","chat.bad.msg":"Could you say a little more?","chat.btn":"Chat","chat.c.question":"I have a question","chat.c.subscribe":"I want to subscribe","chat.c.topic":"I’d like to suggest a topic","chat.close":"Close","chat.hello":"Hello! This is the Éclipse team. What can we do for you?","chat.ko":"The message did not go through. Please try again in a moment.","chat.mail.ask":"Would you like a reply or an update? Leave your e-mail (optional). It is used only to answer you and is never shared. Please do not send account numbers or banking details.","chat.mail.skip":"No e-mail","chat.ph.email":"you@email.com","chat.ph.msg":"Your message…","chat.q.ask":"What is your question?","chat.q.warn":"A quick reminder: we explain the news, but we give no personalised investment or tax advice.","chat.send":"Send","chat.sub.ask":"Gladly. What is your e-mail address?","chat.sub.link":"Gladly: sign-up happens on our subscription page.","chat.sub.open":"Open the sign-up page","chat.thanks":"Thank you, we’ve got it! We read everything. Anything else?","chat.title":"Write to us","chat.topic.ask":"What topic would you like us to explain? A word, a news story, a question on your mind.","chat.wait":"One moment, the previous message is still being sent.","ed.arch":"You are reading the archived edition of","ed.back":"Go to today’s edition →","ed.changes":"What it changes for you","ed.kicker":"{date} · Today’s edition · No. {n}","ed.ko":"This edition cannot be found right now.","ed.loading":"Loading the edition…","ed.means":"What it means","ed.noLang":"This edition is not yet available in your language: it is shown in French.","ed.said":"What is said","ed.sources":"Sources of the day","ed.three":"Three things to understand today","ed.watch":"Watch this week","ed.word":"Word of the day","foot.rights":"© 2026 Éclipse","foot.sig":"Éclipse is written every morning for people to whom nobody has ever explained how money moves.","foot.warn":"Éclipse is an explanatory news outlet. It is neither investment advice, nor tax advice, nor a recommendation to buy or sell. Investing carries a risk of losing capital. For any personal decision, consult a regulated professional.","foot.warnL":"Disclaimer.","nav.apropos":"Method and disclaimer","nav.apropos.d":"How we verify · what Éclipse is not","nav.archives":"Archive","nav.archives.d":"Every past edition","nav.former":"Learn","nav.former.d":"Free courses, checked links","nav.today":"Today","nav.today.d":"Today’s edition","nl.btn":"Sign me up","nl.ko":"The sign-up did not go through. Please try again in a moment.","nl.label":"E-mail address","nl.ok":"Thank you! You are subscribed. The next edition will reach your inbox.","nl.ph":"you@email.com","nl.small":"Your address is used only to send Éclipse. Never resold, never shared.","nl.text":"One decoded story a day, Monday to Friday. Five minutes to read, zero jargon, no buy or sell advice. Free, and you can leave whenever you like.","nl.title":"Get Éclipse every morning","nl.wait":"Sending…","open":"Open the resource →","search.count":"Results for “{q}”: {n}","search.editions":"Editions","search.hint":"Type a word: a country, a figure, a term (“rates”, “budget”, “oil”…).","search.none":"No results for “{q}”.","search.resources":"Learning resources","search.sections":"Sections","search.sug":"Can’t find your topic?","search.sugBtn":"Suggest this topic","search.sugText":"Tell us what you would like to understand: we read every suggestion to choose the next topics.","site.desc":"Every morning, economic and geopolitical news explained simply: what is said, what it means, what it changes for you.","site.tag":"Financial news, decoded for people who know nothing about it","site.title":"Éclipse — financial news, decoded","tag.audit":"Free to follow","tag.badge":"Free badge","tag.free":"Free","tag.paid":"Paid certificate","ui.lang":"Language","ui.mSub":"Subscribe for free","ui.menu":"Menu","ui.search":"Search a topic…","ui.searchBtn":"Search","ui.subShort":"Subscribe","view.apropos.blocks":[{"h":"What Éclipse is"},{"p":"An explanatory news outlet. Monday to Friday, one economic, financial or geopolitical story explained simply, for people to whom nobody has ever explained how money moves."},{"h":"How we work"},{"ul":["**Three questions for every topic:** what is said, what it means, what it changes for you.","**Every figure is dated.** A price without its time means nothing.","**We go back to the source** (press release, official text, statistic) rather than copying an article. When a secondary source gets it wrong, we say so.","**When a fact cannot be verified, we write “unverified”.**","**We distinguish** what is in force, what is voted with future effect, and what is only a proposal.","**We correct.** Any error we find is corrected and flagged in the edition concerned."]},{"h":"What we do not do"},{"ul":["We never recommend buying or selling anything. Éclipse is neither investment advice nor tax advice.","Investing carries a risk of losing capital. For any personal decision, consult a regulated professional.","To date, no sponsored content and no affiliate links."]},{"h":"Your data"},{"p":"Your e-mail address is used only to send Éclipse. It is neither sold nor shared, and you can unsubscribe at any time. If you write to suggest a topic or ask a question, your message (and your e-mail, if you leave it) is passed to us to reply and to choose our topics; it is never published. Search runs in your browser: your keywords are not sent to us. The site sets no advertising cookies. Your language choice is remembered in your browser and is not transmitted."}],"view.apropos.lead":"How Éclipse works, and what Éclipse is not.","view.apropos.title":"Method and disclaimer","view.archives.lead":"Every Éclipse edition, from the most recent to the oldest.","view.archives.title":"Archive","view.former.lead":"Free resources from institutions with no product to sell you. Start with the first one, then move on in whatever order suits you.","view.former.note":"Links checked on {date}. Sessions, durations and certificate prices change: check on the course page. None of these links is an affiliate link.","view.former.title":"Learn","view.search.title":"Search"},"es":{"ar.empty":"Todavía no hay ninguna edición archivada.","ar.no":"N.º ","chat.back":"Volver","chat.bad.email":"Esa dirección no parece válida. ¿Puedes revisarla?","chat.bad.msg":"¿Puedes precisar un poco más tu mensaje?","chat.btn":"Chatear","chat.c.question":"Tengo una pregunta","chat.c.subscribe":"Quiero suscribirme","chat.c.topic":"Quiero proponer un tema","chat.close":"Cerrar","chat.hello":"¡Hola! Somos el equipo de Éclipse. ¿En qué podemos ayudarte?","chat.ko":"El mensaje no se ha enviado. Vuelve a intentarlo dentro de un momento.","chat.mail.ask":"¿Quieres una respuesta o que te avisemos? Deja tu correo (opcional). Solo sirve para responderte y nunca se comparte. No nos envíes números de cuenta ni datos bancarios.","chat.mail.skip":"Sin correo","chat.ph.email":"tu@correo.com","chat.ph.msg":"Tu mensaje…","chat.q.ask":"¿Cuál es tu pregunta?","chat.q.warn":"Un recordatorio: explicamos la actualidad, pero no damos ningún consejo personalizado de inversión ni de fiscalidad.","chat.send":"Enviar","chat.sub.ask":"Con mucho gusto. ¿Cuál es tu correo electrónico?","chat.sub.link":"Con mucho gusto: la suscripción se hace en nuestra página de inscripción.","chat.sub.open":"Abrir la página de inscripción","chat.thanks":"¡Gracias, recibido! Lo leemos todo. ¿Algo más?","chat.title":"Escríbenos","chat.topic.ask":"¿Qué tema te gustaría que explicáramos? Una palabra, una noticia, una duda que te ronda.","chat.wait":"Un momento, el mensaje anterior aún se está enviando.","ed.arch":"Estás leyendo la edición archivada del","ed.back":"Ir a la edición del día →","ed.changes":"Lo que cambia para ti","ed.kicker":"{date} · Edición del día · n.º {n}","ed.ko":"No se encuentra esta edición por ahora.","ed.loading":"Cargando la edición…","ed.means":"Lo que significa","ed.noLang":"Esta edición aún no está disponible en tu idioma: se muestra en francés.","ed.said":"Lo que se dice","ed.sources":"Fuentes del día","ed.three":"Tres cosas que entender hoy","ed.watch":"A vigilar esta semana","ed.word":"La palabra del día","foot.rights":"© 2026 Éclipse","foot.sig":"Éclipse se escribe cada mañana para quienes nunca han tenido a nadie que les explique cómo circula el dinero.","foot.warn":"Éclipse es un medio de explicación. No es asesoramiento de inversión, ni asesoramiento fiscal, ni una recomendación de compra o de venta. Invertir conlleva un riesgo de pérdida de capital. Para cualquier decisión personal, consulta a un profesional regulado.","foot.warnL":"Advertencia.","nav.apropos":"Método y advertencia","nav.apropos.d":"Cómo verificamos · lo que Éclipse no es","nav.archives":"Archivo","nav.archives.d":"Todas las ediciones anteriores","nav.former":"Formarse","nav.former.d":"Cursos gratuitos, enlaces revisados","nav.today":"Hoy","nav.today.d":"La edición del día","nl.btn":"Quiero suscribirme","nl.ko":"La suscripción no se ha completado. Vuelve a intentarlo dentro de un momento.","nl.label":"Correo electrónico","nl.ok":"¡Gracias! Ya estás suscrito. La próxima edición llegará a tu bandeja de entrada.","nl.ph":"tu@correo.com","nl.small":"Tu dirección se usa solo para enviar Éclipse. Nunca se vende ni se comparte.","nl.text":"Una noticia descifrada al día, de lunes a viernes. Cinco minutos de lectura, cero jerga, ningún consejo de compra. Gratis, y te vas cuando quieras.","nl.title":"Recibe Éclipse cada mañana","nl.wait":"Enviando…","open":"Abrir el recurso →","search.count":"Resultados para «{q}»: {n}","search.editions":"Ediciones","search.hint":"Escribe una palabra: un país, una cifra, un término («tipos», «presupuesto», «petróleo»…).","search.none":"Sin resultados para «{q}».","search.resources":"Recursos para formarse","search.sections":"Secciones","search.sug":"¿No encuentras tu tema?","search.sugBtn":"Proponer este tema","search.sugText":"Cuéntanos qué te gustaría entender: leemos cada propuesta para elegir los próximos temas.","site.desc":"Cada mañana, la actualidad económica y geopolítica explicada con sencillez: lo que se dice, lo que significa, lo que cambia para ti.","site.tag":"La actualidad financiera, descifrada para quien no sabe nada de ella","site.title":"Éclipse — la actualidad financiera, descifrada","tag.audit":"Seguimiento gratis","tag.badge":"Insignia gratuita","tag.free":"Gratis","tag.paid":"Certificado de pago","ui.lang":"Idioma","ui.mSub":"Suscribirse gratis","ui.menu":"Menú","ui.search":"Buscar un tema…","ui.searchBtn":"Buscar","ui.subShort":"Suscribirse","view.apropos.blocks":[{"h":"Qué es Éclipse"},{"p":"Un medio de explicación. De lunes a viernes, una noticia económica, financiera o geopolítica explicada con sencillez, para quienes nunca han tenido a nadie que les explique cómo circula el dinero."},{"h":"Cómo trabajamos"},{"ul":["**Tres preguntas para cada tema:** lo que se dice, lo que significa, lo que cambia para ti.","**Cada cifra lleva fecha.** Una cotización sin su hora no significa nada.","**Vamos a la fuente** (comunicado, texto oficial, estadística) en vez de copiar un artículo. Cuando una fuente secundaria se equivoca, lo señalamos.","**Cuando un hecho no se puede verificar, escribimos «no verificado».**","**Distinguimos** lo que está en vigor, lo que está aprobado con efecto futuro y lo que es solo una propuesta.","**Corregimos.** Todo error detectado se corrige y se señala en la edición correspondiente."]},{"h":"Lo que no hacemos"},{"ul":["Nunca recomendamos comprar o vender nada. Éclipse no es ni asesoramiento de inversión ni asesoramiento fiscal.","Invertir conlleva un riesgo de pérdida de capital. Para cualquier decisión personal, consulta a un profesional regulado.","Hasta hoy, ningún contenido patrocinado ni enlaces de afiliación."]},{"h":"Tus datos"},{"p":"Tu correo electrónico se usa únicamente para enviar Éclipse. No se vende ni se comparte, y puedes darte de baja cuando quieras. Si nos escribes para proponer un tema o hacer una pregunta, tu mensaje (y tu correo, si lo dejas) nos llega para responderte y elegir nuestros temas; nunca se publica. La búsqueda se hace en tu navegador: tus palabras clave no se nos envían. El sitio no instala cookies publicitarias. La elección de idioma se guarda en tu navegador y no se transmite."}],"view.apropos.lead":"Cómo trabaja Éclipse y lo que Éclipse no es.","view.apropos.title":"Método y advertencia","view.archives.lead":"Todas las ediciones de Éclipse, de la más reciente a la más antigua.","view.archives.title":"Archivo","view.former.lead":"Recursos gratuitos de instituciones que no tienen ningún producto que venderte. Empieza por el primero y avanza en el orden que prefieras.","view.former.note":"Enlaces revisados el {date}. Las sesiones, las duraciones y el precio de los certificados cambian: compruébalo en la página del curso. Ninguno de estos enlaces es de afiliación.","view.former.title":"Formarse","view.search.title":"Búsqueda"},"fr":{"ar.empty":"Aucune édition archivée pour l’instant.","ar.no":"Édition n°","chat.back":"Retour","chat.bad.email":"Cette adresse ne semble pas valide. Pouvez-vous la vérifier ?","chat.bad.msg":"Pouvez-vous préciser un peu votre message ?","chat.btn":"Discuter","chat.c.question":"J’ai une question","chat.c.subscribe":"Je m’abonne","chat.c.topic":"Je propose un sujet","chat.close":"Fermer","chat.hello":"Bonjour ! Je suis l’équipe d’Éclipse. Que puis-je faire pour vous ?","chat.ko":"Le message n’est pas parti. Réessayez dans un instant.","chat.mail.ask":"Souhaitez-vous une réponse ou être prévenu·e ? Laissez votre e-mail (facultatif). Il ne sert qu’à vous répondre et n’est jamais partagé. Ne nous envoyez ni numéro de compte ni donnée bancaire.","chat.mail.skip":"Sans e-mail","chat.ph.email":"votre@email.fr","chat.ph.msg":"Votre message…","chat.q.ask":"Quelle est votre question ?","chat.q.warn":"Petit rappel : nous expliquons l’actualité, mais nous ne donnons aucun conseil personnalisé d’investissement ou de fiscalité.","chat.send":"Envoyer","chat.sub.ask":"Avec plaisir. Quelle est votre adresse e-mail ?","chat.sub.link":"Avec plaisir : l’inscription se fait sur notre page d’abonnement.","chat.sub.open":"Ouvrir la page d’inscription","chat.thanks":"Merci, c’est bien reçu ! Nous lisons tout. Autre chose ?","chat.title":"Écrivez-nous","chat.topic.ask":"Quel sujet aimeriez-vous que nous expliquions ? Un mot, une actualité, une question qui vous trotte dans la tête.","chat.wait":"Un instant, le message précédent est en cours d’envoi.","ed.arch":"Vous lisez l’édition archivée du","ed.back":"Voir l’édition du jour →","ed.changes":"Ce que ça change pour vous","ed.kicker":"{date} · Édition du jour · n°{n}","ed.ko":"Cette édition est introuvable pour le moment.","ed.loading":"Chargement de l’édition…","ed.means":"Ce que ça veut dire","ed.noLang":"Cette édition n’est pas encore disponible dans votre langue : elle s’affiche en français.","ed.said":"Ce qui est dit","ed.sources":"Sources du jour","ed.three":"Trois choses à comprendre aujourd’hui","ed.watch":"À surveiller cette semaine","ed.word":"Le mot du jour","foot.rights":"© 2026 Éclipse","foot.sig":"Éclipse est écrit chaque matin pour les gens à qui personne n’a jamais expliqué comment l’argent circule.","foot.warn":"Éclipse est un média d’explication. Ce n’est ni un conseil en investissement, ni un conseil fiscal, ni une recommandation d’achat ou de vente. Investir comporte un risque de perte en capital. Pour toute décision personnelle, adressez-vous à un professionnel réglementé.","foot.warnL":"Avertissement.","nav.apropos":"Méthode et avertissement","nav.apropos.d":"Comment on vérifie · ce qu’Éclipse n’est pas","nav.archives":"Archives","nav.archives.d":"Toutes les éditions passées","nav.former":"Se former","nav.former.d":"Cours gratuits, liens contrôlés","nav.today":"Aujourd’hui","nav.today.d":"L’édition du jour","nl.btn":"Je m’inscris","nl.ko":"L’inscription n’a pas abouti. Réessayez dans un instant.","nl.label":"Adresse e-mail","nl.ok":"Merci ! Vous êtes inscrit·e. La prochaine édition arrive dans votre boîte mail.","nl.ph":"votre@email.fr","nl.small":"Votre adresse sert uniquement à l’envoi d’Éclipse. Aucune revente, aucun partage.","nl.text":"Un décodage par jour, du lundi au vendredi. Cinq minutes de lecture, zéro jargon, aucun conseil d’achat. Gratuit, et vous partez quand vous voulez.","nl.title":"Recevez Éclipse chaque matin","nl.wait":"Envoi…","open":"Ouvrir la ressource →","search.count":"Résultats pour « {q} » : {n}","search.editions":"Éditions","search.hint":"Tapez un mot : un pays, un chiffre, un terme (« taux », « budget », « pétrole »…).","search.none":"Aucun résultat pour « {q} ».","search.resources":"Ressources pour se former","search.sections":"Sections","search.sug":"Vous ne trouvez pas votre sujet ?","search.sugBtn":"Proposer ce sujet","search.sugText":"Dites-nous ce que vous aimeriez comprendre : nous lisons chaque proposition pour choisir les prochains sujets.","site.desc":"Chaque matin, l’actualité économique et géopolitique expliquée simplement : ce qui est dit, ce que ça veut dire, ce que ça change pour vous.","site.tag":"L’actualité financière, décodée pour ceux qui n’y connaissent rien","site.title":"Éclipse — l’actualité financière, décodée","tag.audit":"Suivi gratuit","tag.badge":"Badge gratuit","tag.free":"Gratuit","tag.paid":"Certificat payant","ui.lang":"Langue","ui.mSub":"S’abonner gratuitement","ui.menu":"Menu","ui.search":"Rechercher un sujet…","ui.searchBtn":"Rechercher","ui.subShort":"S’abonner","view.apropos.blocks":[{"h":"Ce qu’est Éclipse"},{"p":"Un média d’explication. Du lundi au vendredi, une actualité économique, financière ou géopolitique expliquée simplement, pour les gens à qui personne n’a jamais expliqué comment l’argent circule."},{"h":"Comment nous travaillons"},{"ul":["**Trois questions pour chaque sujet :** ce qui est dit, ce que ça veut dire, ce que ça change pour vous.","**Chaque chiffre est daté.** Un cours sans son heure ne veut rien dire.","**Nous remontons à la source** (communiqué, texte officiel, statistique) plutôt que de recopier un article. Quand une source secondaire se trompe, nous le signalons.","**Quand un fait n’est pas vérifiable, nous écrivons « non vérifié ».**","**Nous distinguons** ce qui est en vigueur, ce qui est voté avec effet futur, et ce qui n’est qu’une proposition.","**Nous corrigeons.** Toute erreur constatée est corrigée et signalée dans l’édition concernée."]},{"h":"Ce que nous ne faisons pas"},{"ul":["Nous ne recommandons jamais d’acheter ou de vendre quoi que ce soit. Éclipse n’est ni un conseil en investissement, ni un conseil fiscal.","Investir comporte un risque de perte en capital. Pour toute décision personnelle, adressez-vous à un professionnel réglementé.","À ce jour, aucun contenu sponsorisé et aucun lien d’affiliation."]},{"h":"Vos données"},{"p":"Votre adresse e-mail sert uniquement à l’envoi d’Éclipse. Elle n’est ni revendue ni partagée, et vous pouvez vous désinscrire à tout moment. Si vous nous écrivez pour proposer un sujet ou poser une question, votre message (et votre e-mail, si vous le laissez) nous est transmis pour vous répondre et choisir nos sujets ; il n’est jamais publié. La recherche s’effectue dans votre navigateur : vos mots-clés ne nous sont pas envoyés. Le site ne dépose pas de cookies publicitaires. Le choix de la langue est mémorisé dans votre navigateur, sans être transmis."}],"view.apropos.lead":"Comment Éclipse travaille, et ce qu’Éclipse n’est pas.","view.apropos.title":"Méthode et avertissement","view.archives.lead":"Toutes les éditions d’Éclipse, de la plus récente à la plus ancienne.","view.archives.title":"Archives","view.former.lead":"Des ressources gratuites, proposées par des institutions qui n’ont aucun produit à vous vendre. Commencez par la première, puis avancez dans l’ordre qui vous convient.","view.former.note":"Liens contrôlés le {date}. Les sessions, les durées et le prix des certificats changent : vérifiez sur la page du cours. Aucun de ces liens n’est un lien d’affiliation.","view.former.title":"Se former","view.search.title":"Recherche"}},"data":{"formations.json":{"checked":"2026-08-25","items":[{"url":"https://www.amf-france.org/fr/espace-epargnants","lang":"FR","tags":["free"],"name":{"fr":"AMF — Espace épargnants","en":"AMF — Savers’ hub (French financial regulator)","es":"AMF — Espacio del ahorrador (regulador financiero francés)"},"text":{"fr":"Le régulateur lui-même : guides courts, simulateur d’impact des frais, quiz, lexique et alertes contre les arnaques. Aucun intérêt à vous vendre un produit.","en":"The regulator itself: short guides, a fee-impact simulator, quizzes, a glossary and scam alerts. No interest in selling you a product.","es":"El propio regulador: guías breves, simulador del impacto de las comisiones, cuestionarios, glosario y alertas contra estafas. Ningún interés en venderte un producto."}},{"url":"https://www.lafinancepourtous.com/decryptages/marches-financiers/","lang":"FR","tags":["free"],"name":{"fr":"La finance pour tous","en":"La finance pour tous (public-interest association)","es":"La finance pour tous (asociación de interés general)"},"text":{"fr":"Association d’intérêt général agréée par l’Éducation nationale : dossiers sur les marchés, plus de 25 quiz, dictionnaire d’environ 800 définitions. Sans inscription, sans publicité.","en":"A public-interest association approved by the French Ministry of Education: dossiers on markets, 25+ quizzes, a dictionary of about 800 definitions. No sign-up, no ads.","es":"Asociación de interés general con el visto bueno del Ministerio de Educación francés: dosieres sobre mercados, más de 25 cuestionarios y un diccionario de unas 800 definiciones. Sin registro y sin publicidad."}},{"url":"https://www.banque-france.fr/fr/abc-de-leconomie","lang":"FR","tags":["free"],"name":{"fr":"Banque de France — ABC de l’économie","en":"Banque de France — ABC of the economy","es":"Banco de Francia — ABC de la economía"},"text":{"fr":"Fiches de 2 à 4 pages, vidéos et podcast pour comprendre l’inflation, les taux et la monnaie. L’une des ressources les plus sous-estimées.","en":"Fact sheets of 2 to 4 pages, videos and a podcast to understand inflation, interest rates and money. One of the most underrated resources.","es":"Fichas de 2 a 4 páginas, vídeos y un pódcast para entender la inflación, los tipos de interés y la moneda. Uno de los recursos más infravalorados."}},{"url":"https://www.fun-mooc.fr/fr/cours/comment-gerer-efficacement-son-epargne-et-ses-placements/","lang":"FR","tags":["free","badge"],"name":{"fr":"MOOC « Comment gérer efficacement son épargne et ses placements ? »","en":"MOOC “How to manage your savings and investments effectively” (in French)","es":"MOOC «Cómo gestionar eficazmente tu ahorro y tus inversiones» (en francés)"},"text":{"fr":"Conçu par l’Institut national de la consommation avec l’AMF : profil d’investisseur, produits financiers, mise en pratique. Environ 3 semaines à raison d’1 h 15 par semaine. Badge numérique gratuit dès 50 % de bonnes réponses. Le cours s’ouvre par sessions : vérifiez la date.","en":"Designed by the French National Consumer Institute with the AMF: investor profile, financial products, practice. About 3 weeks at 1 h 15 a week. Free digital badge from 50% correct answers. The course opens in sessions: check the date.","es":"Diseñado por el Instituto Nacional del Consumo francés con la AMF: perfil de inversor, productos financieros, práctica. Unas 3 semanas a razón de 1 h 15 por semana. Insignia digital gratuita a partir del 50 % de respuestas correctas. El curso se abre por sesiones: comprueba la fecha."}},{"url":"https://www.coursera.org/learn/financial-markets-global","lang":"EN","tags":["audit","paid"],"name":{"fr":"Yale — Financial Markets (Robert Shiller)","en":"Yale — Financial Markets (Robert Shiller)","es":"Yale — Financial Markets (Robert Shiller)"},"text":{"fr":"La référence pour comprendre les marchés, par un prix Nobel d’économie. Aucun prérequis, sous-titres en 22 langues dont le français. Suivi gratuit (« audit ») ; le certificat est payant (environ 49 $). Environ 33 heures.","en":"The reference for understanding markets, taught by a Nobel laureate in economics. No prerequisites, subtitles in 22 languages. Free to follow (“audit”); the certificate is paid (about $49). Roughly 33 hours.","es":"La referencia para entender los mercados, impartida por un premio Nobel de Economía. Sin requisitos previos, subtítulos en 22 idiomas. Se puede seguir gratis («audit»); el certificado es de pago (unos 49 $). Unas 33 horas."}},{"url":"https://www.futurelearn.com/courses/epargner-et-investir","lang":"FR","tags":["free","paid"],"name":{"fr":"Grenoble École de Management — Épargner et investir","en":"Grenoble École de Management — Saving and investing (in French)","es":"Grenoble École de Management — Ahorrar e invertir (en francés)"},"text":{"fr":"Le MOOC francophone le plus complet sur le sujet, sans compétence préalable : circuit de l’épargne, intermédiaires, marchés, réglementation. Environ 5 semaines à 3 h par semaine. Accès gratuit ; certificat payant.","en":"The most complete French-language MOOC on the subject, no prior skills needed: the savings circuit, intermediaries, markets, regulation. About 5 weeks at 3 h a week. Free access; paid certificate.","es":"El MOOC en francés más completo sobre el tema, sin conocimientos previos: circuito del ahorro, intermediarios, mercados, regulación. Unas 5 semanas a razón de 3 h por semana. Acceso gratuito; certificado de pago."}},{"url":"https://fr.khanacademy.org/economics-finance-domain/core-finance","lang":"FR","tags":["free"],"name":{"fr":"Khan Academy — Finances et marchés de capitaux","en":"Khan Academy — Finance and capital markets (in French)","es":"Khan Academy — Finanzas y mercados de capitales (en francés)"},"text":{"fr":"Modules de 5 à 15 minutes pour combler un trou précis : intérêts composés, obligations, ratios. Gratuit, sans publicité.","en":"Modules of 5 to 15 minutes to fill one precise gap: compound interest, bonds, ratios. Free, no ads.","es":"Módulos de 5 a 15 minutos para cubrir una laguna concreta: interés compuesto, bonos, ratios. Gratis y sin publicidad."}}]}},"builtin":[{"date":"2026-09-28","n":1,"title":{"fr":"Mercredi, la France présente un budget à 54 milliards d’économies","en":"On Wednesday, France unveils a budget with €54 billion in savings","es":"El miércoles, Francia presenta un presupuesto con 54.000 millones de ahorro"},"topics":{"fr":["Mercredi, la France présente un budget à 54 milliards d’économies.","Le budget 2027 arrive mercredi, et il vaut 54 milliards d’euros d’efforts","Le pétrole reprend 6 dollars en une semaine : l’espoir n’a pas tenu","La France emprunte désormais plus cher que l’Italie","Point de base","Présentation du budget 2027","Inflation en zone euro","Le détroit d’Ormuz"],"en":["On Wednesday, France unveils a budget with €54 billion in savings.","The 2027 budget arrives Wednesday, and it is worth €54 billion in savings efforts","Oil regains $6 in a week: the hope did not hold","France now borrows at a higher rate than Italy","Basis point","2027 budget presentation","Eurozone inflation","The Strait of Hormuz"],"es":["El miércoles, Francia presenta un presupuesto con 54.000 millones de euros de ahorro.","El presupuesto de 2027 llega el miércoles y supone 54.000 millones de euros de esfuerzo","El petróleo recupera 6 dólares en una semana: la esperanza no aguantó","Francia se endeuda ahora a un tipo más alto que Italia","Punto básico","Presentación del presupuesto 2027","Inflación en la eurozona","El estrecho de Ormuz"]}}]};
+
+/* ---------- état ---------- */
+var SITE = null, LANGDATA = {}, LANGLOADED = {}, lang = "fr";
+var cur = { id:null, date:null, q:"" }, loadToken = 0, archivesCache = null, edCache = {}, firstRoute = true;
+
+/* ---------- utilitaires ---------- */
+var $ = function(id){ return document.getElementById(id); };
+function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function store(k, v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k, v); }catch(e){ return null; } }
+function el(tag, cls, txt){ var e = document.createElement(tag); if(cls) e.className = cls; if(txt !== undefined) e.textContent = txt; return e; }
+function fetchText(url){
+  return fetch(url, { cache:"no-cache" }).then(function(r){ if(!r.ok) throw new Error(String(r.status)); return r.text(); });
+}
+function fetchData(name){ return fetchText(RAW + name).catch(function(){ return fetchText(name); }); }
+function fetchJSON(name){ return fetchData(name).then(function(t){ return JSON.parse(t); }); }
+
+/* ---------- réglages du site (site.json) ---------- */
+var VIEW_TYPES = { edition:1, archives:1, cards:1, page:1 };   // types de vues connus de cette coque
+var CHAT_INTENTS = { subscribe:1, topic:1, question:1 };        // parcours connus de la fenêtre de discussion
+var SEARCH_ENTRY = { id:"search", type:"search" };               // vue interne : les résultats de recherche
+
+function cleanSite(x){
+  if (!x || typeof x !== "object" || x.schema !== 1) return null;    // un schéma plus récent est ignoré, pas mal lu
+  var langs = (Array.isArray(x.langs) ? x.langs : []).filter(function(l){
+    return l && /^[a-z]{2,3}$/.test(l.code || "") && typeof l.name === "string" && l.name;
+  }).map(function(l){
+    return { code:l.code, name:l.name, tag:(typeof l.tag === "string" && l.tag) || l.code, dir:l.dir === "rtl" ? "rtl" : "ltr",
+             edition:l.edition !== false, style:typeof l.style === "string" ? l.style : "" };
+  });
+  var seen = {}, nav = (Array.isArray(x.nav) ? x.nav : []).filter(function(n){
+    if (!n || !/^[a-z0-9-]{1,30}$/.test(n.id || "") || !VIEW_TYPES[n.type] || seen[n.id]) return false;
+    if (n.type === "cards" && !/^[A-Za-z0-9._-]+\.json$/.test(n.data || "")) return false;
+    seen[n.id] = 1; return true;
+  }).map(function(n){ return { id:n.id, type:n.type, data:n.data || "", menu:n.menu !== false, footer:n.footer !== false }; });
+  if (!langs.length || !nav.length) return null;
+  var def = (typeof x.defaultLang === "string" && langs.some(function(l){ return l.code === x.defaultLang; })) ? x.defaultLang : langs[0].code;
+  var nl = x.newsletter || {};
+  var mode = (nl.mode === "link" && /^https:\/\//.test(nl.url || "")) ? "link" : "netlify";
+  var social = (Array.isArray(x.social) ? x.social : []).filter(function(s){
+    return s && typeof s.label === "string" && s.label && /^https:\/\//.test(s.url || "");
+  }).map(function(s){ return { label:s.label, url:s.url }; });
+  var ch = x.chat || {};
+  var intents = (Array.isArray(ch.intents) ? ch.intents : ["subscribe", "topic", "question"]).filter(function(i, k, a){ return CHAT_INTENTS[i] && a.indexOf(i) === k; });
+  return { schema:1, name:(typeof x.name === "string" && x.name) || "Éclipse", defaultLang:def, langs:langs, nav:nav,
+           newsletter:{ mode:mode, url:mode === "link" ? nl.url : "" }, social:social,
+           chat:{ enabled:ch.enabled !== false && intents.length > 0, intents:intents },
+           search:{ enabled:!(x.search && x.search.enabled === false) } };
+}
+
+function navById(id){ return SITE.nav.filter(function(n){ return n.id === id; })[0]; }
+function entryById(id){ return id === "search" ? SEARCH_ENTRY : navById(id); }
+function homeEntry(){ return SITE.nav.filter(function(n){ return n.type === "edition"; })[0] || SITE.nav[0]; }
+function langObj(c){ return SITE.langs.filter(function(l){ return l.code === c; })[0]; }
+function known(c){ return !!langObj(c); }
+function routeOf(n){ return n.type === "edition" && n === homeEntry() ? "#/" : "#/" + n.id; }
+
+/* ---------- textes ---------- */
+function T(k, vars){
+  var v = LANGDATA[lang] && LANGDATA[lang][k];
+  if (typeof v !== "string") v = LANGDATA[SITE.defaultLang] && LANGDATA[SITE.defaultLang][k];
+  if (typeof v !== "string") return "";
+  if (vars) Object.keys(vars).forEach(function(n){ v = v.split("{" + n + "}").join(vars[n]); });
+  return v;
+}
+// un texte absent de la langue lue s’affiche dans la langue de référence : on l’indique (lecteurs d’écran, sens d’écriture)
+function markFallback(node, key){
+  var d = LANGDATA[lang], ref = langObj(SITE.defaultLang);
+  if (lang !== SITE.defaultLang && !(d && d[key] !== undefined && d[key] !== null)) { node.setAttribute("lang", ref.code); node.setAttribute("dir", ref.dir); }
+  else { node.removeAttribute("lang"); node.removeAttribute("dir"); }
+}
+function TV(k){
+  var v = LANGDATA[lang] && LANGDATA[lang][k];
+  if (v === undefined || v === null) v = LANGDATA[SITE.defaultLang] && LANGDATA[SITE.defaultLang][k];
+  return v;
+}
+function fmtDate(iso, long){
+  try{
+    return new Date(iso + "T12:00:00").toLocaleDateString(langObj(lang).tag,
+      long ? { day:"numeric", month:"long", year:"numeric" } : { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+  }catch(e){ return iso; }
+}
+// mini-mise en forme des textes : **gras** et [texte](https://lien) — jamais de HTML brut
+function inline(target, s){
+  String(s).split(/(\*\*[^*]+\*\*|\[[^\]]+\]\((?:https?:\/\/|mailto:)[^)\s]+\))/).forEach(function(part){
+    if (!part) return;
+    var m;
+    if ((m = part.match(/^\*\*([^*]+)\*\*$/))) target.appendChild(el("strong", "", m[1]));
+    else if ((m = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/))) {
+      var a = el("a", "", m[1]); a.href = m[2]; a.target = "_blank"; a.rel = "noopener"; target.appendChild(a);
+    } else target.appendChild(document.createTextNode(part));
+  });
+}
+
+/* ---------- langue ---------- */
+function detectLang(){
+  var q = (location.search.match(/[?&]lang=([a-z]{2,3})/) || [])[1];
+  if (q && known(q)) return q;
+  var s = store("eclipse-lang");
+  if (s && known(s)) return s;
+  var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || SITE.defaultLang];
+  for (var i = 0; i < list.length; i++) {
+    var n = String(list[i] || "").split("-")[0].toLowerCase();
+    if (known(n)) return n;
+  }
+  return SITE.defaultLang;
+}
+
+function ensureLang(c){
+  if (!LANGLOADED[c]) {
+    LANGLOADED[c] = fetchJSON("lang-" + c + ".json").then(function(o){
+      if (o && typeof o === "object" && !Array.isArray(o)) LANGDATA[c] = Object.assign({}, LANGDATA[c] || {}, o);
+    }).catch(function(){ /* on garde la copie embarquée, ou le français */ });
+  }
+  return LANGLOADED[c];
+}
+
+function setLang(c, persist){
+  lang = known(c) ? c : SITE.defaultLang;
+  if (persist) store("eclipse-lang", lang);
+  applyLang();
+  ensureLang(lang).then(function(){ if (langObj(lang)) applyLang(); });
+}
+
+function buildLangPanel(){
+  var p = $("langPanel"); p.textContent = "";
+  SITE.langs.forEach(function(l){
+    var b = el("button", "lopt"); b.type = "button"; b.setAttribute("lang", l.code);
+    b.setAttribute("aria-current", l.code === lang ? "true" : "false");
+    b.appendChild(el("span", "", l.name));
+    b.appendChild(el("i", "", l.code === lang ? "✓" : l.code.toUpperCase()));
+    b.addEventListener("click", function(){ setLang(l.code, true); closePanels(); $("langBtn").focus(); });
+    p.appendChild(b);
+  });
+}
+
+function navLabel(n){ return T("nav." + n.id) || n.id; }
+
+function buildMenu(){
+  var m = $("menuPanel"); m.textContent = "";
+  if (SITE.search.enabled) m.appendChild(searchForm("menuQ", "msearch", cur.id === "search" ? cur.q : ""));
+  var cta = el("a", "cta", T("ui.mSub")); cta.href = "#abonnement"; m.appendChild(cta);
+  m.appendChild(document.createElement("hr"));
+  SITE.nav.forEach(function(n){
+    if (!n.menu) return;
+    var a = el("a", "mi"); a.href = routeOf(n); a.setAttribute("data-route", n.id);
+    var lb = el("b", "", navLabel(n)); markFallback(lb, "nav." + n.id); a.appendChild(lb);
+    var d = T("nav." + n.id + ".d"); if (d) { var ds = el("span", "", d); markFallback(ds, "nav." + n.id + ".d"); a.appendChild(ds); }
+    if (cur.id === n.id) a.setAttribute("aria-current", "page");
+    m.appendChild(a);
+  });
+}
+
+function buildFooter(){
+  var f = $("footNav"); f.textContent = "";
+  SITE.nav.forEach(function(n){
+    if (!n.footer) return;
+    var a = el("a", "", navLabel(n)); a.href = routeOf(n); f.appendChild(a);
+  });
+  var s = el("a", "", T("ui.subShort")); s.href = "#abonnement"; f.appendChild(s);
+  SITE.social.forEach(function(x){
+    var a = el("a", "", x.label); a.href = x.url; a.target = "_blank"; a.rel = "noopener me"; f.appendChild(a);
+  });
+}
+
+function applyNewsletter(){
+  var link = SITE.newsletter.mode === "link";
+  $("nlForm").hidden = link; $("nlLink").hidden = !link;
+  if (link) $("nlLink").setAttribute("href", SITE.newsletter.url);
+}
+
+function applyLang(){
+  var lo = langObj(lang);
+  var root = document.documentElement;
+  root.setAttribute("lang", lang); root.setAttribute("dir", lo.dir);
+  $("langCode").textContent = lang.toUpperCase();
+  $("nlLang").value = lang;
+  $("siteName").textContent = SITE.name;
+  $("logo").setAttribute("aria-label", SITE.name);
+  each(document.querySelectorAll("[data-i18n]"), function(e){ var k = e.getAttribute("data-i18n"), v = T(k); if (v) { e.textContent = v; markFallback(e, k); } });
+  each(document.querySelectorAll("[data-i18n-ph]"), function(e){ e.setAttribute("placeholder", T(e.getAttribute("data-i18n-ph"))); });
+  each(document.querySelectorAll("[data-i18n-label]"), function(e){ e.setAttribute("aria-label", T(e.getAttribute("data-i18n-label"))); });
+  var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute("content", T("site.desc"));
+  buildLangPanel(); buildMenu(); buildFooter(); applyNewsletter(); applyChat();
+  if (cur.id) refreshView();
+  setTitle();
+}
+
+function setTitle(){
+  var n = cur.id && entryById(cur.id), t = T("site.title");
+  if (n && n.type !== "edition") t = (T("view." + n.id + ".title") || navLabel(n)) + " — " + SITE.name;
+  else {
+    var r = $("edition-root");
+    var et = r && (r.getAttribute("data-title-" + lang) || r.getAttribute("data-title-" + SITE.defaultLang));
+    if (et) t = et + " — " + SITE.name;
+  }
+  document.title = t;
+}
+
+/* ---------- filtre de sécurité pour le contenu chargé à distance (éditions) ---------- */
+var DROP_TAGS = "script style iframe frame frameset object embed applet link meta base form input button textarea select option foreignobject use image img video audio source track canvas template noscript math animate set animatemotion animatetransform".split(" ");
+var OK_TAGS = "article section div span p h1 h2 h3 h4 strong b em i br ul ol li a figure figcaption small sup sub blockquote svg g defs marker path rect line polyline polygon circle ellipse text tspan title desc lineargradient stop".split(" ");
+var OK_ATTR = ("class id lang dir role hidden href target rel viewbox width height x y x1 x2 y1 y2 cx cy r rx ry d points fill stroke stroke-width stroke-dasharray stroke-linecap stroke-linejoin " +
+  "opacity fill-opacity stroke-opacity transform text-anchor dominant-baseline marker-end marker-start markerwidth markerheight refx refy orient markerunits preserveaspectratio offset stop-color " +
+  "font-size font-weight letter-spacing xmlns").split(" ");
+
+function sanitize(html){
+  var doc = new DOMParser().parseFromString("<!doctype html><body>" + html, "text/html");
+  (function walk(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(ch){
+      if (ch.nodeType === 8) { node.removeChild(ch); return; }
+      if (ch.nodeType !== 1) return;
+      var tag = ch.localName.toLowerCase();
+      if (DROP_TAGS.indexOf(tag) > -1) { node.removeChild(ch); return; }
+      if (OK_TAGS.indexOf(tag) < 0) {                      // balise inconnue : on garde le texte, pas la balise
+        walk(ch);
+        while (ch.firstChild) node.insertBefore(ch.firstChild, ch);
+        node.removeChild(ch); return;
+      }
+      Array.prototype.slice.call(ch.attributes).forEach(function(a){
+        var n = a.name.toLowerCase(), v = a.value, ok = OK_ATTR.indexOf(n) > -1 || /^data-[a-z0-9-]+$/.test(n) || /^aria-[a-z-]+$/.test(n);
+        if (ok && n === "id" && !/^[A-Za-z0-9_-]{1,60}$/.test(v)) ok = false;
+        if (ok && n === "href") ok = tag === "a" && /^(https?:\/\/|mailto:|#)/i.test(v.trim());
+        if (ok && /url\s*\(/i.test(v) && !/^url\(#[A-Za-z0-9_-]+\)$/.test(v.trim())) ok = false;
+        if (ok && /javascript:|expression\s*\(/i.test(v)) ok = false;
+        if (!ok) ch.removeAttribute(a.name);
+      });
+      if (tag === "a") { ch.setAttribute("rel", "noopener noreferrer"); if (ch.getAttribute("target")) ch.setAttribute("target", "_blank"); }
+      walk(ch);
+    });
+  })(doc.body);
+  return doc.body;
+}
+
+/* ---------- vues : une fonction par type (edition, archives, cards, page) ---------- */
+var VIEWS = {};
+
+function pageShell(n){
+  var w = el("div", "wrap page");
+  var h = el("h1", "", T("view." + n.id + ".title") || navLabel(n)); markFallback(h, "view." + n.id + ".title"); w.appendChild(h);
+  var lead = T("view." + n.id + ".lead"); if (lead) { var lp = el("p", "lead", lead); markFallback(lp, "view." + n.id + ".lead"); w.appendChild(lp); }
+  return w;
+}
+
+/* édition du jour ou archivée */
+function isEdition(h){ return typeof h === "string" && h.indexOf('id="edition-root"') > -1; }
+function builtinFor(date){ return EMBED.builtin.filter(function(b){ return b.date === date; })[0]; }
+function latestBuiltin(){ return EMBED.builtin.slice().sort(function(a, b){ return a.date < b.date ? 1 : -1; })[0]; }
+function builtinHtml(b){ var t = b && $("ed-" + b.date); return t ? t.innerHTML : ""; }
+function fetchEdition(date){
+  var name = date ? "editions/" + date + ".html" : "edition.html";
+  return fetchData(name).then(function(h){ if (!isEdition(h)) throw new Error("format"); return h; });
+}
+
+function showEditionLang(){
+  var root = $("edition");
+  if (!root) { setNotice(); return; }
+  var blocks = root.querySelectorAll(".ed-lang");
+  if (!blocks.length) { setNotice(); return; }
+  var has = false;
+  each(blocks, function(b){ if (b.getAttribute("lang") === lang) has = true; });
+  var use = has ? lang : SITE.defaultLang;
+  each(blocks, function(b){
+    b.hidden = b.getAttribute("lang") !== use;
+    var lo = langObj(b.getAttribute("lang"));           // chaque bloc garde le sens d’écriture de sa propre langue
+    b.setAttribute("dir", lo ? lo.dir : "ltr");
+  });
+  root.setAttribute("data-shown", use);
+  setNotice(!has && lang !== SITE.defaultLang);
+  setTitle();
+}
+
+function setNotice(noLang){
+  var n = $("notice"), inner = $("noticeInner"), c = entryById(cur.id);
+  inner.textContent = "";
+  var any = false;
+  if (c && c.type === "edition" && cur.date) {
+    var s1 = el("span", "", T("ed.arch") + " " + fmtDate(cur.date) + "."); markFallback(s1, "ed.arch"); inner.appendChild(s1);
+    var a = el("a", "", T("ed.back")); markFallback(a, "ed.back"); a.href = "#/"; inner.appendChild(a); any = true;
+  }
+  if (noLang && c && c.type === "edition") { var s2 = el("span", "", T("ed.noLang")); markFallback(s2, "ed.noLang"); inner.appendChild(s2); any = true; }
+  n.hidden = !any;
+}
+
+function loadEdition(date, host){
+  var tok = ++loadToken, key = date || "latest";
+  var b = date ? builtinFor(date) : null;
+  var p = edCache[key] ? Promise.resolve(edCache[key])
+        : b ? Promise.resolve(builtinHtml(b))
+        : fetchEdition(date).catch(function(){ if (!date) return builtinHtml(latestBuiltin()); throw new Error("nf"); });
+  host.textContent = "";
+  host.appendChild(el("p", "loading", T("ed.loading")));
+  p.then(function(html){
+    if (tok !== loadToken) return;
+    edCache[key] = html;
+    var body = sanitize(html);
+    host.textContent = "";
+    while (body.firstChild) host.appendChild(document.adoptNode(body.firstChild));
+    showEditionLang();
+  }).catch(function(){
+    if (tok !== loadToken) return;
+    host.textContent = ""; host.appendChild(el("p", "loading", T("ed.ko")));
+  });
+}
+
+VIEWS.edition = function(n, ctx){
+  var host = $("edition");
+  if (!host || ctx.fresh) {
+    var v = $("view"); v.textContent = "";
+    host = el("div"); host.id = "edition"; v.appendChild(host);
+    loadEdition(cur.date, host);
+  } else showEditionLang();
+};
+
+/* archives */
+function getArchives(){
+  if (archivesCache) return Promise.resolve(archivesCache);
+  return fetchJSON("archives.json")
+    .then(function(a){ return Array.isArray(a) ? a : []; })
+    .catch(function(){ return []; })
+    .then(function(remote){
+      var map = {};
+      EMBED.builtin.concat(remote).forEach(function(e){ if (e && /^\d{4}-\d{2}-\d{2}$/.test(e.date || "")) map[e.date] = Object.assign({}, map[e.date] || {}, e); });
+      archivesCache = Object.keys(map).map(function(k){ return map[k]; }).sort(function(a, b){ return a.date < b.date ? 1 : -1; });
+      return archivesCache;
+    });
+}
+VIEWS.archives = function(n){
+  var v = $("view"); v.textContent = "";
+  var w = pageShell(n), ul = el("ul", "arlist"); w.appendChild(ul); v.appendChild(w);
+  var id = n.id;
+  getArchives().then(function(list){
+    if (cur.id !== id) return;
+    ul.textContent = "";
+    if (!list.length) { ul.appendChild(el("li", "empty", T("ar.empty"))); return; }
+    list.forEach(function(e){
+      var li = el("li"), a = el("a"); a.href = "#/edition/" + e.date;
+      a.appendChild(el("span", "ad", fmtDate(e.date)));
+      var t = el("span", "at"); t.appendChild(el("span", "an", T("ar.no") + e.n));
+      t.appendChild(document.createTextNode((e.title && (e.title[lang] || e.title[SITE.defaultLang])) || ""));
+      a.appendChild(t); li.appendChild(a); ul.appendChild(li);
+    });
+  });
+};
+
+/* cartes (ex. « Se former ») : la liste vient d’un fichier de données */
+var dataCache = {};
+function getData(name){
+  if (dataCache[name]) return Promise.resolve(dataCache[name]);
+  return fetchJSON(name).catch(function(){ return EMBED.data[name] || null; }).then(function(d){
+    if (!d || !Array.isArray(d.items)) d = EMBED.data[name] || { items:[] };
+    dataCache[name] = d; return d;
+  });
+}
+VIEWS.cards = function(n){
+  var v = $("view"); v.textContent = "";
+  var w = pageShell(n), g = el("div", "lgrid"); w.appendChild(g); v.appendChild(w);
+  var id = n.id;
+  getData(n.data).then(function(d){
+    if (cur.id !== id) return;
+    d.items.forEach(function(r){
+      if (!r || !/^https?:\/\//.test(r.url || "")) return;
+      var name = r.name || {}, text = r.text || {};
+      var c = el("article", "lcard");
+      c.appendChild(el("h3", "", name[lang] || name[SITE.defaultLang] || ""));
+      var tg = el("div", "tags");
+      if (r.lang) tg.appendChild(el("span", "tg", r.lang));
+      (r.tags || []).forEach(function(k){ tg.appendChild(el("span", "tg " + (k === "paid" ? "pay" : "ok"), T("tag." + k) || k)); });
+      c.appendChild(tg);
+      c.appendChild(el("p", "", text[lang] || text[SITE.defaultLang] || ""));
+      var a = el("a", "go", T("open")); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; c.appendChild(a);
+      g.appendChild(c);
+    });
+    var note = T("view." + id + ".note", { date: d.checked ? fmtDate(d.checked, true) : "" });
+    if (note) w.appendChild(el("p", "fine", note));
+  });
+};
+
+/* pages de texte : blocs {h}, {p}, {ul}, {note} écrits dans lang-XX.json */
+VIEWS.page = function(n){
+  var v = $("view"); v.textContent = "";
+  var w = pageShell(n), prose = el("div", "prose"); w.appendChild(prose); v.appendChild(w);
+  var blocks = TV("view." + n.id + ".blocks"); markFallback(prose, "view." + n.id + ".blocks");
+  (Array.isArray(blocks) ? blocks : []).forEach(function(b){
+    if (!b || typeof b !== "object") return;
+    if (typeof b.h === "string") prose.appendChild(el("h2", "", b.h));
+    else if (typeof b.p === "string") { var p = el("p"); inline(p, b.p); prose.appendChild(p); }
+    else if (Array.isArray(b.ul)) { var ul = el("ul"); b.ul.forEach(function(t){ var li = el("li"); inline(li, t); ul.appendChild(li); }); prose.appendChild(ul); }
+    else if (typeof b.note === "string") { var f = el("p", "fine"); inline(f, b.note); prose.appendChild(f); }
+  });
+};
+
+/* ---------- recherche : sections, éditions, ressources (tout se passe dans le navigateur, rien n’est envoyé) ---------- */
+function svgIcon(paths, size){
+  var NS = "http://www.w3.org/2000/svg", s = document.createElementNS(NS, "svg");
+  s.setAttribute("width", size); s.setAttribute("height", size); s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("fill", "none");
+  s.setAttribute("stroke", "currentColor"); s.setAttribute("stroke-width", "2"); s.setAttribute("stroke-linecap", "round"); s.setAttribute("aria-hidden", "true");
+  paths.forEach(function(d){ var p = document.createElementNS(NS, "path"); p.setAttribute("d", d); s.appendChild(p); });
+  return s;
+}
+
+function goSearch(q){
+  q = String(q || "").trim();
+  var h = "#/search/" + encodeURIComponent(q);
+  closePanels();
+  if (location.hash === h) route(true); else location.hash = h;
+}
+
+function searchForm(id, cls, value){
+  var f = el("form", cls); f.setAttribute("role", "search");
+  var i = el("input"); i.type = "search"; i.id = id; i.name = "q"; i.value = value || ""; i.autocomplete = "off";
+  i.setAttribute("placeholder", T("ui.search")); i.setAttribute("aria-label", T("ui.search")); i.setAttribute("enterkeyhint", "search"); i.maxLength = 120;
+  var b = el("button"); b.type = "submit"; b.setAttribute("aria-label", T("ui.searchBtn"));
+  b.appendChild(svgIcon(["M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z", "M20 20l-4-4"], 18));
+  f.appendChild(i); f.appendChild(b);
+  f.addEventListener("submit", function(ev){ ev.preventDefault(); goSearch(i.value); });
+  return f;
+}
+
+function norm(s){ return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+function tokensOf(q){ return norm(q).split(/[\s,;:.!?()«»"“”‘’'\/\\_-]+/).filter(function(t){ return t.length >= 2; }); }
+function textOf(v){                                   // aplatit un texte, une liste ou des blocs de page en une chaîne
+  if (typeof v === "string") return v;
+  if (Array.isArray(v)) return v.map(textOf).join(" ");
+  if (v && typeof v === "object") return Object.keys(v).map(function(k){ return textOf(v[k]); }).join(" ");
+  return "";
+}
+function both(get){ return get(lang) + " " + (lang === SITE.defaultLang ? "" : get(SITE.defaultLang)); }   // langue lue + langue de référence
+function pick(o){ return function(c){ return (o && o[c]) ? textOf(o[c]) : ""; }; }
+
+// score : 0 = ne correspond pas ; sinon plus c’est haut, mieux c’est. Tous les mots tapés doivent être présents.
+function scoreOf(toks, strong, weak){
+  var s = norm(strong), w = norm(weak), total = 0;
+  for (var i = 0; i < toks.length; i++) {
+    if (s.indexOf(toks[i]) > -1) total += 3; else if (w.indexOf(toks[i]) > -1) total += 1; else return 0;
+  }
+  return total;
+}
+
+function searchAll(q){
+  var toks = tokensOf(q), cardNavs = SITE.nav.filter(function(n){ return n.type === "cards"; });
+  return Promise.all([ getArchives() ].concat(cardNavs.map(function(n){ return getData(n.data); }))).then(function(res){
+    var out = { sections:[], editions:[], resources:[] };
+    if (!toks.length) { out.sections = SITE.nav.filter(function(n){ return n.menu; }).map(function(n){ return { n:n, s:1 }; }); return out; }
+    SITE.nav.forEach(function(n){
+      var strong = both(function(c){ var d = LANGDATA[c] || {}; return (d["nav." + n.id] || "") + " " + (d["view." + n.id + ".title"] || ""); });
+      var weak = both(function(c){ var d = LANGDATA[c] || {}; return (d["nav." + n.id + ".d"] || "") + " " + (d["view." + n.id + ".lead"] || "") + " " + textOf(d["view." + n.id + ".blocks"]); });
+      var s = scoreOf(toks, strong + " " + n.id, weak); if (s) out.sections.push({ n:n, s:s });
+    });
+    res[0].forEach(function(e){
+      var strong = both(pick(e.title)), weak = both(pick(e.topics));
+      var s = scoreOf(toks, strong, weak); if (s) out.editions.push({ e:e, s:s });
+    });
+    cardNavs.forEach(function(n, k){
+      (res[k + 1].items || []).forEach(function(r){
+        if (!r || !/^https?:\/\//.test(r.url || "")) return;
+        var s = scoreOf(toks, both(pick(r.name)), both(pick(r.text))); if (s) out.resources.push({ r:r, s:s, nav:n });
+      });
+    });
+    var byScore = function(a, b){ return b.s - a.s; };
+    out.sections.sort(byScore); out.resources.sort(byScore);
+    out.editions.sort(function(a, b){ return b.s - a.s || (a.e.date < b.e.date ? 1 : -1); });
+    return out;
+  });
+}
+
+VIEWS.search = function(n){
+  var v = $("view"); v.textContent = "";
+  var w = el("div", "wrap page");
+  w.appendChild(el("h1", "", T("view.search.title")));
+  w.appendChild(searchForm("pageQ", "sform", cur.q));
+  var status = el("p", "lead"), body = el("div", "sres");
+  w.appendChild(status); w.appendChild(body); v.appendChild(w);
+  var q = cur.q;
+  searchAll(q).then(function(r){
+    if (cur.id !== "search" || cur.q !== q) return;
+    var total = r.sections.length + r.editions.length + r.resources.length;
+    status.textContent = q.trim() ? (total ? T("search.count", { q:q, n:total }) : T("search.none", { q:q })) : T("search.hint");
+    function group(title, items, build){
+      if (!items.length) return;
+      body.appendChild(el("h2", "rh", title));
+      var ul = el("ul", "rlist"); items.slice(0, 30).forEach(function(it){ ul.appendChild(build(it)); }); body.appendChild(ul);
+    }
+    group(T("search.sections"), r.sections, function(it){
+      var li = el("li"), a = el("a"); a.href = routeOf(it.n);
+      a.appendChild(el("b", "", navLabel(it.n))); var d = T("nav." + it.n.id + ".d"); if (d) a.appendChild(el("span", "", d));
+      li.appendChild(a); return li;
+    });
+    group(T("search.editions"), r.editions, function(it){
+      var li = el("li"), a = el("a"); a.href = "#/edition/" + it.e.date;
+      a.appendChild(el("b", "", (it.e.title && (it.e.title[lang] || it.e.title[SITE.defaultLang])) || it.e.date));
+      a.appendChild(el("span", "", T("ar.no") + it.e.n + " · " + fmtDate(it.e.date)));
+      li.appendChild(a); return li;
+    });
+    group(T("search.resources"), r.resources, function(it){
+      var li = el("li"), a = el("a"); a.href = it.r.url; a.target = "_blank"; a.rel = "noopener";
+      a.appendChild(el("b", "", (it.r.name && (it.r.name[lang] || it.r.name[SITE.defaultLang])) || it.r.url));
+      a.appendChild(el("span", "", T("open")));
+      li.appendChild(a); return li;
+    });
+    if (SITE.chat.enabled && SITE.chat.intents.indexOf("topic") > -1 && q.trim()) {          // c’est ainsi que les sujets à traiter remontent
+      var sug = el("div", "sug" + (total ? "" : " sug-hi"));
+      sug.appendChild(el("h2", "", T("search.sug")));
+      sug.appendChild(el("p", "", T("search.sugText")));
+      var btn = el("button", "sugbtn", T("search.sugBtn")); btn.type = "button";
+      btn.addEventListener("click", function(){ openChat("topic", q); });
+      sug.appendChild(btn); body.appendChild(sug);
+    }
+  });
+};
+
+/* ---------- fenêtre de discussion : parcours guidé (abonnement · proposer un sujet · poser une question) ----------
+   Ce n’est pas un robot qui répond : les messages arrivent à l’équipe (formulaire Netlify « contact » → e-mail).      */
+var chat = { open:false, lastSent:0 };
+function validEmail(s){ return /^[^@\s]{1,64}@[^@\s]{1,190}\.[^@\s]{2,}$/.test(s); }
+function chatSay(who, text, rich){
+  var b = el("div", "bub " + (who === "me" ? "me" : "bot"));
+  if (rich) inline(b, text); else b.textContent = text;
+  $("chatLog").appendChild(b); $("chatLog").scrollTop = $("chatLog").scrollHeight;
+}
+function chatChoices(list){
+  var box = $("chatIn"); box.textContent = "";
+  var w = el("div", "choices");
+  list.forEach(function(c){
+    var b = el(c.href ? "a" : "button", "choice", c.label);
+    if (c.href) { b.href = c.href; b.target = "_blank"; b.rel = "noopener"; } else { b.type = "button"; b.addEventListener("click", c.fn); }
+    w.appendChild(b);
+  });
+  box.appendChild(w);
+}
+function chatAsk(o){
+  var box = $("chatIn"); box.textContent = "";
+  var f = el("form", "cin"), field = el(o.long ? "textarea" : "input");
+  f.noValidate = true;                                  // c’est notre message, dans la langue du lecteur, qui explique l’erreur
+  if (o.long) { field.rows = 3; field.maxLength = 1000; } else { field.type = "email"; field.autocomplete = "email"; field.setAttribute("inputmode", "email"); field.maxLength = 254; }
+  field.setAttribute("placeholder", o.ph); field.setAttribute("aria-label", o.ph); field.value = o.value || "";
+  var send = el("button", "cs", T("chat.send")); send.type = "submit";
+  f.appendChild(field); f.appendChild(send);
+  f.addEventListener("submit", function(ev){ ev.preventDefault(); o.onSubmit(field.value.trim()); });
+  box.appendChild(f);
+  if (o.skip) { var s = el("button", "choice skip", o.skip.label); s.type = "button"; s.addEventListener("click", o.skip.fn); box.appendChild(s); }
+  field.focus();
+}
+function chatPost(fields, ok, ko){
+  if (Date.now() - chat.lastSent < 6000) { chatSay("bot", T("chat.wait")); return; }
+  chat.lastSent = Date.now();
+  $("chatIn").textContent = "";
+  fetch("/", { method:"POST", headers:{ "Content-Type":"application/x-www-form-urlencoded" }, body:new URLSearchParams(fields).toString() })
+    .then(function(r){ if (!r.ok) throw new Error(String(r.status)); ok(); })
+    .catch(function(){ chat.lastSent = 0; ko(); });
+}
+function chatMenu(){
+  var label = { subscribe:T("chat.c.subscribe"), topic:T("chat.c.topic"), question:T("chat.c.question") };
+  chatChoices(SITE.chat.intents.map(function(i){
+    return { label:label[i], fn:function(){ chatSay("me", label[i]); chatIntent(i, ""); } };
+  }));
+}
+function chatIntent(i, prefill){
+  if (i === "subscribe") chatSubscribe(); else chatMessage(i, prefill);
+}
+function chatSubscribe(){
+  if (SITE.newsletter.mode === "link") {
+    chatSay("bot", T("chat.sub.link"));
+    chatChoices([ { label:T("chat.sub.open"), href:SITE.newsletter.url }, { label:T("chat.back"), fn:chatMenu } ]);
+    return;
+  }
+  chatSay("bot", T("chat.sub.ask"));
+  chatAsk({ ph:T("nl.ph"), onSubmit:function(v){
+    if (!validEmail(v)) { chatSay("bot", T("chat.bad.email")); return; }
+    chatSay("me", v);
+    chatPost({ "form-name":"newsletter", email:v, lang:lang, "bot-field":"" },
+      function(){ chatSay("bot", T("nl.ok")); chatMenu(); },
+      function(){ chatSay("bot", T("nl.ko")); chatSubscribe(); });
+  }});
+}
+function chatMessage(kind, prefill){
+  if (kind === "question") chatSay("bot", T("chat.q.warn"));
+  chatSay("bot", T(kind === "topic" ? "chat.topic.ask" : "chat.q.ask"));
+  chatAsk({ long:true, ph:T("chat.ph.msg"), value:prefill, onSubmit:function(msg){
+    if (msg.length < 3) { chatSay("bot", T("chat.bad.msg")); return; }
+    chatSay("me", msg);
+    chatSay("bot", T("chat.mail.ask"));
+    var send = function(email){
+      var subject = "[Éclipse-" + (kind === "topic" ? "sujet" : "question") + "] " + msg.replace(/\s+/g, " ").slice(0, 70);
+      chatPost({ "form-name":"contact", kind:kind, message:msg, email:email, lang:lang, subject:subject, "bot-field":"" },
+        function(){ chatSay("bot", T("chat.thanks")); chatMenu(); },
+        function(){ chatSay("bot", T("chat.ko")); chatMenu(); });
+    };
+    chatAsk({ ph:T("chat.ph.email"),
+      skip:{ label:T("chat.mail.skip"), fn:function(){ chatSay("me", T("chat.mail.skip")); send(""); } },
+      onSubmit:function(v){
+        if (v && !validEmail(v)) { chatSay("bot", T("chat.bad.email")); return; }
+        chatSay("me", v || T("chat.mail.skip")); send(v);
+      }});
+  }});
+}
+function openChat(intent, prefill){
+  closePanels();
+  chat.open = true;
+  $("chatBtn").hidden = true; $("chatBtn").setAttribute("aria-expanded", "true"); $("chatPanel").hidden = false;
+  if (intent || !$("chatLog").firstChild) {
+    $("chatLog").textContent = ""; $("chatIn").textContent = "";
+    if (intent && SITE.chat.intents.indexOf(intent) > -1) chatIntent(intent, prefill || "");
+    else { chatSay("bot", T("chat.hello")); chatMenu(); }
+  }
+}
+function closeChat(){
+  chat.open = false;
+  $("chatPanel").hidden = true; $("chatBtn").setAttribute("aria-expanded", "false");
+  applyChat(); $("chatBtn").focus();
+}
+function applyChat(){
+  var on = SITE.chat.enabled;
+  $("chatBtn").hidden = !on || chat.open;
+  if (!on) { $("chatPanel").hidden = true; chat.open = false; }
+}
+$("chatBtn").addEventListener("click", function(){ openChat(); });
+$("chatClose").addEventListener("click", closeChat);
+
+/* ---------- routage : #/  ·  #/<id>  ·  #/edition/AAAA-MM-JJ  ·  #/search/mot ---------- */
+function parseHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  if (h === "abonnement") return { keep:true };
+  var p = h.split("/");
+  if (p[0] === "edition" && /^\d{4}-\d{2}-\d{2}$/.test(p[1] || "")) return { id:homeEntry().id, date:p[1] };
+  if (p[0] === "search" && SITE.search.enabled) {
+    var q = p.slice(1).join("/"); try{ q = decodeURIComponent(q); }catch(e){}
+    return { id:"search", date:null, q:q.slice(0, 120) };
+  }
+  var n = p[0] && navById(p[0]);
+  if (n) return { id:n.id, date:null };
+  return { id:homeEntry().id, date:null };
+}
+
+function refreshView(){
+  var n = entryById(cur.id);
+  if (!n) { route(true); return; }
+  if (n.type === "edition") VIEWS.edition(n, { fresh:false }); else VIEWS[n.type](n);
+  setNotice();
+  if (n.type === "edition") showEditionLang();
+}
+
+function route(force){
+  var r = parseHash();
+  closePanels();
+  if (r.keep) return;
+  var fresh = firstRoute || force === true || !(cur.id === r.id && cur.date === (r.date || null) && cur.q === (r.q || ""));
+  firstRoute = false;
+  cur = { id:r.id, date:r.date || null, q:r.q || "" };
+  each(document.querySelectorAll("[data-route]"), function(a){
+    if (a.getAttribute("data-route") === cur.id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  });
+  var mq = $("menuQ"); if (mq && cur.id !== "search") mq.value = "";
+  var n = entryById(cur.id);
+  if (n.type === "edition") VIEWS.edition(n, { fresh:fresh || !$("edition") });
+  else VIEWS[n.type](n);
+  if (n.type === "edition" && $("edition").querySelector(".ed-lang")) showEditionLang(); else setNotice();
+  setTitle();
+  if (fresh) window.scrollTo(0, 0);
+}
+
+/* ---------- menus déroulants ---------- */
+var panels = [ { b:"menuBtn", p:"menuPanel" }, { b:"langBtn", p:"langPanel" } ];
+function closePanels(except){
+  panels.forEach(function(x){
+    if (x.p === except) return;
+    $(x.p).hidden = true; $(x.b).setAttribute("aria-expanded", "false");
+  });
+}
+panels.forEach(function(x){
+  $(x.b).addEventListener("click", function(ev){
+    ev.stopPropagation();
+    var open = $(x.p).hidden;
+    closePanels(x.p);
+    $(x.p).hidden = !open;
+    $(x.b).setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  $(x.p).addEventListener("click", function(ev){ ev.stopPropagation(); if (ev.target.closest && ev.target.closest("a")) closePanels(); });
+});
+document.addEventListener("click", function(){ closePanels(); });
+document.addEventListener("keydown", function(ev){
+  if (ev.key === "Escape") {
+    if (chat.open) { closeChat(); return; }
+    var was = panels.filter(function(x){ return !$(x.p).hidden; })[0]; closePanels(); if (was) $(was.b).focus();
+  }
+});
+
+/* ---------- inscription (mode « netlify » : envoi sans quitter la page ; mode « link » : page d’inscription externe) ---------- */
+$("nlForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var f = ev.target, btn = $("nlBtn"), msg = $("nlMsg");
+  btn.disabled = true; btn.textContent = T("nl.wait"); msg.className = "msg"; msg.textContent = "";
+  var body = new URLSearchParams(new FormData(f)).toString();
+  fetch("/", { method:"POST", headers:{ "Content-Type":"application/x-www-form-urlencoded" }, body:body })
+    .then(function(r){ if (!r.ok) throw new Error(String(r.status)); msg.textContent = T("nl.ok"); f.reset(); $("nlLang").value = lang; })
+    .catch(function(){ msg.className = "msg bad"; msg.textContent = T("nl.ko"); })
+    .then(function(){ btn.disabled = false; btn.textContent = T("nl.btn"); });
+});
+
+/* ---------- démarrage : d’abord la copie embarquée (affichage immédiat), puis les fichiers à jour ---------- */
+SITE = cleanSite(EMBED.site);
+Object.keys(EMBED.lang).forEach(function(c){ LANGDATA[c] = clone(EMBED.lang[c]); });
+lang = detectLang();
+applyLang();
+window.addEventListener("hashchange", function(){ route(); });
+route();
+
+fetchJSON("site.json").then(cleanSite).then(function(s){
+  if (s && JSON.stringify(s) !== JSON.stringify(SITE)) SITE = s;
+}).catch(function(){ /* on garde la copie embarquée */ }).then(function(){
+  lang = detectLang();
+  return Promise.all([ ensureLang(SITE.defaultLang), ensureLang(lang) ]);
+}).then(function(){
+  applyLang();
+  if (!navById(cur.id)) route(true);
+});
+})();
+</script>
 </body>
 </html>

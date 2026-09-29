@@ -1,0 +1,75 @@
+{
+ "schema": 1,
+ "name": "Éclipse",
+ "defaultLang": "fr",
+ "langs": [
+  {
+   "code": "fr",
+   "name": "Français",
+   "tag": "fr-FR",
+   "dir": "ltr",
+   "edition": true,
+   "style": "Vouvoiement (vous). Nombres à la française : 8 078 et 4,45 %."
+  },
+  {
+   "code": "en",
+   "name": "English",
+   "tag": "en-US",
+   "dir": "ltr",
+   "edition": true,
+   "style": "Address the reader as “you”. English numbers: 8,078 and 4.45%."
+  },
+  {
+   "code": "es",
+   "name": "Español",
+   "tag": "es-ES",
+   "dir": "ltr",
+   "edition": true,
+   "style": "Tutear al lector (tú). Números a la española : 8.078 y 4,45 %."
+  }
+ ],
+ "nav": [
+  {
+   "id": "today",
+   "type": "edition",
+   "menu": true,
+   "footer": true
+  },
+  {
+   "id": "archives",
+   "type": "archives",
+   "menu": true,
+   "footer": true
+  },
+  {
+   "id": "former",
+   "type": "cards",
+   "data": "formations.json",
+   "menu": true,
+   "footer": true
+  },
+  {
+   "id": "apropos",
+   "type": "page",
+   "menu": true,
+   "footer": true
+  }
+ ],
+ "newsletter": {
+  "mode": "netlify",
+  "form": "newsletter",
+  "url": ""
+ },
+ "social": [],
+ "search": {
+  "enabled": true
+ },
+ "chat": {
+  "enabled": true,
+  "intents": [
+   "subscribe",
+   "topic",
+   "question"
+  ]
+ }
+}
