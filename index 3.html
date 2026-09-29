@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Éclipse — l'actualité financière, décodée</title>
+<meta name="description" content="Chaque matin, l'actualité économique et géopolitique expliquée simplement : ce qui est dit, ce que ça veut dire, ce que ça change pour vous.">
+<meta property="og:title" content="Éclipse — l'actualité financière, décodée">
+<meta property="og:description" content="Ce qui est dit. Ce que ça veut dire. Ce que ça change pour vous.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F4F5F7;--surface:#FFFFFF;--surface-2:#E9ECF0;
+  --ink:#101418;--ink-2:#39444F;--ink-3:#6C7885;
+  --rule:#D6DCE3;--accent:#B8690A;--accent-soft:#FAEEDC;
+  --deep:#1B2C3D;--up:#1C6B4A;--down:#A5312A;
+  --read:64ch;--maxw:1080px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,sans-serif;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+@media(min-width:640px){.wrap{padding:0 28px}}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.015em}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lbl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+
+/* masthead */
+.mast{background:var(--surface);border-bottom:1px solid var(--rule)}
+.mast .wrap{display:flex;align-items:center;gap:14px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px}
+.logo b{font-family:"Newsreader",serif;font-size:25px;font-weight:600;letter-spacing:-.01em}
+.mast .tag{font-size:14px;color:var(--ink-3);border-left:1px solid var(--rule);padding-left:14px}
+@media(max-width:560px){.mast .tag{border-left:none;padding-left:0;width:100%}}
+.mast .date{margin-left:auto}
+
+/* hero */
+.hero{padding:44px 0 34px;border-bottom:1px solid var(--rule)}
+.hero .kicker{color:var(--accent);margin-bottom:14px;display:block}
+.hero h1{font-size:clamp(33px,6.4vw,58px);line-height:1.05;max-width:17ch}
+.hero .stand{margin-top:18px;max-width:var(--read);font-size:19px;color:var(--ink-2)}
+
+/* ticker */
+.tick{background:var(--deep);color:#EDF1F5;overflow-x:auto}
+.tick .row{display:flex;gap:0;min-width:max-content;max-width:var(--maxw);margin:0 auto;padding:0 18px}
+.tick .it{padding:12px 20px 12px 0;margin-right:20px;border-right:1px solid rgba(255,255,255,.14);
+  display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.tick .it:last-child{border-right:none}
+.tick .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#93A5B6}
+.tick .v{font-family:"IBM Plex Mono",monospace;font-size:14.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.tick .d{font-family:"IBM Plex Mono",monospace;font-size:12px;color:#93A5B6}
+
+section{padding:44px 0;border-bottom:1px solid var(--rule)}
+.sh{margin-bottom:26px}
+.sh h2{font-size:clamp(24px,3.6vw,33px)}
+.sh p{color:var(--ink-2);max-width:var(--read);margin-top:9px;font-size:16px}
+
+/* decodes */
+.dec{background:var(--surface);border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:18px}
+.dec > h3{font-family:"Newsreader",serif;font-size:22px;font-weight:500;padding:19px 22px 15px;line-height:1.2}
+.dec .band{display:grid;grid-template-columns:minmax(0,1fr)}
+@media(min-width:800px){.dec .band{grid-template-columns:1fr 1fr 1fr}}
+.dz{padding:17px 22px 20px;border-top:1px solid var(--rule)}
+@media(min-width:800px){.dz{border-left:1px solid var(--rule)}.dz:first-child{border-left:none}}
+.dz .lbl{display:block;margin-bottom:7px;color:var(--accent)}
+.dz p{font-size:15.5px;color:var(--ink-2)}
+.dz p strong{color:var(--ink);font-weight:600}
+
+/* figures */
+figure{margin:0;padding:20px 22px 18px;border-top:1px solid var(--rule);background:var(--surface-2)}
+figure svg{display:block;width:100%;max-width:660px;height:auto;margin:0 auto;color:var(--ink-2)}
+figcaption{margin:12px auto 0;font-size:13.5px;color:var(--ink-3);text-align:center;max-width:58ch;line-height:1.5}
+.fig-box{fill:var(--surface);stroke:currentColor;stroke-width:1}
+.fig-box-hi{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+.fig-t{font-family:"Public Sans",sans-serif;font-size:13px;font-weight:700;fill:var(--ink);text-anchor:middle}
+.fig-s{font-family:"Public Sans",sans-serif;font-size:11px;fill:var(--ink-3);text-anchor:middle}
+.fig-a{font-family:"IBM Plex Mono",monospace;font-size:10.5px;fill:var(--ink-3);text-anchor:middle;letter-spacing:.04em}
+.fig-v{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;fill:var(--ink)}
+.fig-l{font-family:"Public Sans",sans-serif;font-size:12.5px;font-weight:600;fill:var(--ink-2)}
+
+/* word of the day */
+.word{background:var(--accent-soft);border:1px solid var(--accent);border-radius:4px;padding:24px 24px}
+.word .lbl{color:var(--accent)}
+.word h3{font-family:"Newsreader",serif;font-size:27px;margin:8px 0 12px}
+.word p{max-width:var(--read);color:#5A4211;font-size:16.5px}
+.word p + p{margin-top:11px}
+
+/* watch list */
+.watch{display:grid;gap:13px;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.w{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:4px;padding:16px 18px}
+.w .when{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+.w b{display:block;margin:6px 0 5px;font-size:16px;font-weight:700;font-family:"Public Sans",sans-serif}
+.w span{font-size:14.5px;color:var(--ink-2)}
+
+/* newsletter */
+.nl{background:var(--deep);color:#EDF1F5;border-radius:4px;padding:30px 26px}
+.nl h2{color:#fff;font-size:clamp(23px,3.4vw,31px)}
+.nl p{color:#A9BACA;max-width:52ch;margin-top:10px;font-size:16px}
+.nl form{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;max-width:520px}
+.nl input{flex:1 1 240px;border:1px solid #33465A;background:#11202E;color:#fff;border-radius:3px;
+  padding:13px 14px;font-size:16px;font-family:inherit}
+.nl input::placeholder{color:#7A8DA0}
+.nl button{border:none;border-radius:3px;background:var(--accent);color:#fff;font-weight:700;font-size:16px;
+  font-family:"Public Sans",sans-serif;padding:13px 24px;cursor:pointer}
+.nl button:hover{background:#9C5808}
+.nl small{display:block;margin-top:13px;color:#7A8DA0;font-size:13px}
+
+footer{padding:34px 0 60px}
+footer p{font-size:13.5px;color:var(--ink-3);max-width:74ch}
+footer p + p{margin-top:10px}
+footer .sig{font-family:"Newsreader",serif;font-size:17px;color:var(--ink-2);margin-bottom:14px}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="logo">
+      <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true">
+        <circle cx="13" cy="13" r="11" fill="none" stroke="#B8690A" stroke-width="1" opacity=".5"/>
+        <circle cx="13" cy="13" r="7.5" fill="#B8690A"/>
+        <circle cx="16.2" cy="10.4" r="7.5" fill="#FFFFFF"/>
+      </svg>
+      <b>Éclipse</b>
+    </div>
+    <span class="tag">L'actualité financière, décodée pour ceux qui n'y connaissent rien</span>
+    <span class="lbl date">Lundi 28 septembre 2026</span>
+  </div>
+</header>
+
+<div class="tick">
+  <div class="row">
+    <div class="it"><span class="k">CAC 40</span><span class="v">8 078</span><span class="d">+0,01 %</span></div>
+    <div class="it"><span class="k">Euro Stoxx 50</span><span class="v">+0,11 %</span></div>
+    <div class="it"><span class="k">Brent</span><span class="v">105,79 $</span><span class="d">au-dessus de 100 $</span></div>
+    <div class="it"><span class="k">Or</span><span class="v">4 128,86 $</span></div>
+    <div class="it"><span class="k">Euro / dollar</span><span class="v">1,1371</span></div>
+    <div class="it"><span class="k">Clôtures du</span><span class="v">28.09.2026</span></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="hero">
+    <span class="lbl kicker">Édition du jour · n°1</span>
+    <h1>Mercredi, la France présente un budget à 54 milliards d'économies.</h1>
+    <p class="stand">Le pétrole est repassé au-dessus de 105 dollars après avoir chuté la semaine dernière sur un simple espoir diplomatique. C'est toute la leçon de cette première édition : <strong>un espoir n'est pas un fait</strong>, et les marchés apprennent cette différence à leurs dépens, en public, chaque semaine.</p>
+  </div>
+
+  <section>
+    <div class="sh">
+      <h2>Trois choses à comprendre aujourd'hui</h2>
+      <p>La même grille à chaque fois : ce qui est dit, ce que ça veut dire, ce que ça change pour vous. Sans jargon — et quand un mot technique est nécessaire, il est expliqué.</p>
+    </div>
+
+    <article class="dec">
+      <h3>Le budget 2027 arrive mercredi, et il vaut 54 milliards d'euros d'efforts</h3>
+      <div class="band">
+        <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le projet de loi de finances pour 2027 est présenté en Conseil des ministres le <strong>30 septembre</strong>. Le Premier ministre a annoncé un effort de <strong>54 milliards d'euros</strong>, pour ramener le déficit public entre <strong>4,8 % et 5 % du PIB</strong> — contre 6,5 % si rien n'était fait. Pas de hausse d'impôts annoncée, mais un <strong>gel du barème de l'impôt sur le revenu</strong> et du point d'indice des fonctionnaires, et des économies sur les APL et les arrêts maladie.</p></div>
+        <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>« Geler le barème » n'est pas neutre. Chaque année, les tranches d'imposition sont normalement relevées pour suivre l'inflation. Les geler, c'est laisser les salaires progresser pendant que les seuils, eux, ne bougent pas — donc faire entrer des gens dans une tranche supérieure <strong>sans jamais voter de hausse d'impôt</strong>. Les économistes appellent ça la <strong>hausse silencieuse</strong>. C'est une mesure de recettes présentée comme une mesure de stabilité.</p></div>
+        <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Si vos revenus augmentent en 2027, même faiblement, votre impôt peut augmenter plus vite que prévu. Et pour les entreprises : la surtaxe sur les bénéfices des grands groupes est <strong>maintenue mais réduite</strong> — elle rapportera environ 5 milliards par an au lieu de 8 — et les entreprises de taille intermédiaire en sortent. <strong>À vérifier mercredi</strong> : les mesures sur l'épargne, absentes des annonces, mais qui apparaissent souvent dans le texte final.</p></div>
+      </div>
+    </article>
+
+    <article class="dec">
+      <h3>Le pétrole reprend 6 dollars en une semaine : l'espoir n'a pas tenu</h3>
+      <div class="band">
+        <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le baril de Brent s'échange à <strong>105,79 dollars</strong>. Le 21 septembre, il était repassé <strong>sous 100 dollars</strong> — sa plus forte détente depuis des semaines — parce que le marché tablait sur une reprise des flux au Moyen-Orient et sur des discussions autour de la réouverture du détroit d'Ormuz. Aucun accord n'avait été signé.</p></div>
+        <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>Un prix ne reflète pas la réalité d'aujourd'hui : il reflète <strong>l'opinion moyenne sur la réalité de demain</strong>. Quand cette opinion change, le prix bouge, même si rien n'a changé dans le monde physique. Une vanne réellement fermée, c'est un fait. Une vanne qu'on espère rouvrir, c'est un pari. En une semaine, le marché a payé huit dollars pour un pari, puis les a repris.</p></div>
+        <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Le carburant, le chauffage et le transport suivent — avec plusieurs semaines de retard. Une baisse du baril ne se voit jamais à la pompe le lendemain, et une hausse s'y voit toujours plus vite. Plus largement : un pétrole cher, c'est de l'inflation qui revient, donc des banques centrales qui gardent des taux élevés, donc des crédits immobiliers qui ne baissent pas. <strong>Tout est relié.</strong></p></div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 840 186" role="img" aria-label="Chaine de transmission : le prix du petrole fait monter l'inflation attendue, qui oblige les banques centrales a maintenir des taux eleves, ce qui rencherit les credits immobiliers.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="currentColor"></path>
+            </marker>
+          </defs>
+          <rect class="fig-box" x="0.5" y="40" width="159" height="76" rx="3"></rect>
+          <text class="fig-t" x="80" y="72">Pétrole</text>
+          <text class="fig-s" x="80" y="92">105,79 $ le baril</text>
+
+          <text class="fig-a" x="193" y="72">fait monter</text>
+          <line x1="167" y1="78" x2="219" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+          <rect class="fig-box" x="227.5" y="40" width="159" height="76" rx="3"></rect>
+          <text class="fig-t" x="307" y="72">L&#8217;inflation</text>
+          <text class="fig-s" x="307" y="92">celle qu&#8217;on attend</text>
+
+          <text class="fig-a" x="420" y="72">oblige</text>
+          <line x1="394" y1="78" x2="446" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+          <rect class="fig-box" x="454.5" y="40" width="159" height="76" rx="3"></rect>
+          <text class="fig-t" x="534" y="72">Les taux</text>
+          <text class="fig-s" x="534" y="92">maintenus haut</text>
+
+          <text class="fig-a" x="647" y="72">renchérit</text>
+          <line x1="621" y1="78" x2="673" y2="78" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+          <rect class="fig-box-hi" x="681.5" y="40" width="158" height="76" rx="3"></rect>
+          <text class="fig-t" x="760" y="72">Votre crédit</text>
+          <text class="fig-s" x="760" y="92">mensualité plus lourde</text>
+
+          <line x1="80" y1="140" x2="760" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity=".45"></line>
+          <text class="fig-a" x="420" y="164">des semaines s&#8217;écoulent entre chaque maillon</text>
+        </svg>
+        <figcaption>Du baril à votre mensualité. Chaque flèche prend des semaines, parfois des mois : c&#8217;est pourquoi une baisse du pétrole aujourd&#8217;hui ne se voit ni à la pompe ni chez votre banquier avant longtemps.</figcaption>
+      </figure>
+    </article>
+
+    <article class="dec">
+      <h3>La France emprunte désormais plus cher que l'Italie</h3>
+      <div class="band">
+        <div class="dz"><span class="lbl">Ce qui est dit</span><p>Le 18 septembre, l'écart entre le taux auquel la France emprunte à dix ans et celui de l'Allemagne a dépassé <strong>100 points de base</strong> — un point entier — pour la première fois depuis 2012. Résultat spectaculaire : prêter à la France coûte maintenant <strong>un peu plus cher que prêter à l'Italie</strong>, alors que l'Italie est bien plus endettée.</p></div>
+        <div class="dz"><span class="lbl">Ce que ça veut dire</span><p>Les prêteurs ne notent pas un montant de dette, ils notent une <strong>trajectoire</strong> et une capacité à décider. Un pays très endetté mais qui tient son cap inspire plus confiance qu'un pays moins endetté dont le budget dérive et dont la gouvernance change tous les six mois. C'est exactement le raisonnement d'un banquier face à deux emprunteurs : ce n'est pas le montant du crédit qui l'inquiète, c'est la régularité des revenus.</p></div>
+        <div class="dz"><span class="lbl">Ce que ça change pour vous</span><p>Ce taux à dix ans est la référence des <strong>crédits immobiliers français</strong>. Tant qu'il reste élevé, les mensualités restent élevées et le pouvoir d'achat immobilier ne revient pas. Si vous avez fait une simulation de prêt il y a un an, elle est à refaire. C'est aussi ce qui décale des projets de construction — donc des chantiers, donc de l'emploi.</p></div>
+      </div>
+      <figure>
+        <svg viewBox="0 0 660 214" role="img" aria-label="Taux a dix ans au 21 septembre 2026 : France 4,45 pour cent, Italie 4,37 pour cent, Allemagne 3,46 pour cent. L'ecart entre la France et l'Allemagne atteint 99 points de base.">
+          <line x1="150" y1="22" x2="150" y2="158" stroke="currentColor" stroke-width="1" opacity=".35"></line>
+
+          <text class="fig-l" x="140" y="48" text-anchor="end">France</text>
+          <rect x="150" y="32" width="271" height="30" rx="3" fill="var(--accent)"></rect>
+          <text class="fig-v" x="431" y="52">4,45 %</text>
+
+          <text class="fig-l" x="140" y="92" text-anchor="end">Italie</text>
+          <rect x="150" y="76" width="266" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+          <text class="fig-v" x="426" y="96">4,37 %</text>
+
+          <text class="fig-l" x="140" y="136" text-anchor="end">Allemagne</text>
+          <rect x="150" y="120" width="211" height="30" rx="3" fill="currentColor" opacity=".38"></rect>
+          <text class="fig-v" x="371" y="140">3,46 %</text>
+
+          <line x1="361" y1="158" x2="361" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+          <line x1="421" y1="158" x2="421" y2="180" stroke="currentColor" stroke-width="1" opacity=".5"></line>
+          <line x1="361" y1="180" x2="421" y2="180" stroke="var(--accent)" stroke-width="1.5"></line>
+          <text class="fig-a" x="391" y="200" fill="var(--accent)">99 pb</text>
+        </svg>
+        <figcaption>Ce que coûte un emprunt d&#8217;État à dix ans, au 21 septembre 2026. L&#8217;écart entre la barre française et la barre allemande — 99 points de base — est le prix que les prêteurs mettent aujourd&#8217;hui sur le risque français. Il est passé devant celui de l&#8217;Italie.</figcaption>
+      </figure>
+    </article>
+  </section>
+
+  <section>
+    <div class="word">
+      <span class="lbl">Le mot du jour</span>
+      <h3>Point de base</h3>
+      <p>Un <strong>point de base</strong>, c'est un centième de point de pourcentage. 100 points de base = 1 %. On l'utilise parce que, sur les taux, la précision compte : dire « le taux est passé de 4,45 % à 4,47 % » est illisible, dire « il a pris 2 points de base » est immédiat.</p>
+      <p>Pourquoi ça vous concerne : sur un crédit immobilier de 250 000 € sur 20 ans, <strong>25 points de base — un quart de point — représentent environ 30 € par mois</strong>, soit près de 7 000 € sur la durée du prêt. Ce que les journaux appellent « une petite variation de taux » n'a rien de petit à l'échelle d'un ménage.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sh">
+      <h2>À surveiller cette semaine</h2>
+      <p>Les marchés ne réagissent pas au hasard : ils réagissent à des dates connues à l'avance. Les voici.</p>
+    </div>
+    <div class="watch">
+      <div class="w"><span class="when">Mercredi 30 septembre</span><b>Présentation du budget 2027</b><span>Conseil des ministres. Le texte complet dira ce que les annonces ont tu — en particulier sur l'épargne.</span></div>
+      <div class="w"><span class="when">Cette semaine</span><b>Inflation en zone euro</b><span>Le chiffre qui décidera de la prochaine décision de la Banque centrale européenne, et donc du coût de votre crédit.</span></div>
+      <div class="w"><span class="when">En continu</span><b>Le détroit d'Ormuz</b><span>Un accord formel et daté ferait retomber le pétrole durablement. Une déclaration d'intention, non — on vient de le voir.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="nl">
+      <h2>Recevez Éclipse chaque matin</h2>
+      <p>Un décodage par jour, du lundi au vendredi. Cinq minutes de lecture, zéro jargon, aucun conseil d'achat. Gratuit, et vous partez quand vous voulez.</p>
+      <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
+        <label for="email" class="lbl" style="position:absolute;left:-9999px">Adresse e-mail</label>
+        <input id="email" type="email" name="email" placeholder="votre@email.fr" required>
+        <button type="submit">Je m'inscris</button>
+      </form>
+      <small>Votre adresse sert uniquement à l'envoi d'Éclipse. Aucune revente, aucun partage.</small>
+    </div>
+  </section>
+
+  <footer>
+    <p class="sig">Éclipse est écrit chaque matin pour les gens à qui personne n'a jamais expliqué comment l'argent circule.</p>
+    <p><strong>Avertissement.</strong> Éclipse est un média d'explication. Ce n'est ni un conseil en investissement, ni un conseil fiscal, ni une recommandation d'achat ou de vente. Investir comporte un risque de perte en capital. Pour toute décision personnelle, adressez-vous à un professionnel réglementé.</p>
+    <p><strong>Sources du jour</strong> — Clôtures et cours du 28 septembre 2026 : Boursorama. Annonces budgétaires 2027 : déclarations du Premier ministre relayées par LégiFiscal, projet présenté en Conseil des ministres le 30 septembre. Écart de taux France-Allemagne : relevés du 18 au 21 septembre 2026. Chaque chiffre est daté ; un chiffre de marché sans son heure ne veut rien dire.</p>
+    <p>© 2026 Éclipse</p>
+  </footer>
+
+</main>
+</body>
+</html>
